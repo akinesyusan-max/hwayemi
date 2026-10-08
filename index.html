@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Gotch - Tamagotchi Web App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1p:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1p', sans-serif;
+            background: linear-gradient(135deg, #fbcfe8 0%, #ede9fe 50%, #e0f2fe 100%);
+            min-height: 100vh;
+            user-select: none;
+            overflow-x: hidden;
+        }
+        .pixel-font {
+            font-family: 'VT323', monospace;
+        }
+        .tamagotchi-shell {
+            background: radial-gradient(circle at 30% 30%, #ffc0cb 0%, #ff9ebb 50%, #ff7597 100%);
+            box-shadow: 
+                inset 0 10px 20px rgba(255,255,255,0.6),
+                inset 0 -10px 20px rgba(180,50,90,0.4),
+                0 15px 35px rgba(255, 105, 180, 0.3);
+        }
+        .lcd-screen {
+            background: #dbeafe;
+            box-shadow: inset 0 0 10px rgba(30, 58, 138, 0.3);
+            border: 4px solid #1e3a8a;
+        }
+        .glow-btn {
+            transition: all 0.1s ease;
+        }
+        .glow-btn:active {
+            transform: scale(0.92);
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-between items-center min-h-screen py-4 px-4">
+
+    <!-- Top Bar (Removed white background container as requested) -->
+    <header class="w-full max-w-md flex justify-between items-center px-4 py-2 z-10">
+        <div class="flex items-center space-x-2">
+            <span class="text-xl">🌿</span>
+            <span id="current-time" class="font-bold text-gray-700 text-lg">23:00</span>
+        </div>
+        <div class="flex items-center space-x-3 text-gray-700">
+            <button id="music-btn" class="w-9 h-9 rounded-full bg-white/80 shadow flex items-center justify-center glow-btn text-pink-600 hover:bg-white">
+                🎵
+            </button>
+            <span class="text-lg">📶</span>
+            <span class="text-lg">🔋</span>
+        </div>
+    </header>
+
+    <!-- Main Content Area / Tamagotchi Device -->
+    <main class="w-full max-w-md flex flex-col items-center my-auto py-2">
+        <!-- Status Text on Top of Device -->
+        <div class="text-center mb-2">
+            <h1 class="text-pink-600 font-bold tracking-wider text-sm">★ ANGEL GOTCH ★</h1>
+            <div class="flex justify-center space-x-6 text-xs font-bold text-gray-600 mt-1">
+                <div>HUNGRY: <span id="stat-hungry" class="pixel-font text-base text-pink-600">74%</span></div>
+                <div>HAPPY: <span id="stat-happy" class="pixel-font text-base text-pink-600">82%</span></div>
+            </div>
+        </div>
+
+        <!-- Tamagotchi Shell -->
+        <div class="tamagotchi-shell relative w-72 h-80 rounded-[50%] flex flex-col items-center justify-between p-6 shadow-2xl">
+            <!-- Decorative Angel Wings -->
+            <div class="absolute left-[-15px] top-[110px] text-2xl animate-pulse">🪽</div>
+            <div class="absolute right-[-15px] top-[110px] text-2xl animate-pulse scale-x-[-1]">🪽</div>
+
+            <!-- Top LED / Charm hole -->
+            <div class="w-4 h-4 rounded-full bg-pink-200 shadow-inner flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-white opacity-70"></div>
+            </div>
+
+            <!-- LCD Screen -->
+            <div class="lcd-screen w-56 h-36 rounded-2xl flex flex-col justify-between p-2 relative overflow-hidden">
+                <!-- Screen Header info -->
+                <div class="flex justify-between items-center text-[11px] text-blue-900 font-bold z-10">
+                    <span id="screen-mode-indicator">💤 Zzz</span>
+                    <span id="weather-badge">✨ สบายดี</span>
+                    <span id="stat-health" class="text-red-500">❤️ 100%</span>
+                </div>
+
+                <!-- Pixel Character & Animation -->
+                <div class="flex flex-col items-center justify-center relative my-auto">
+                    <!-- Background Star in LCD -->
+                    <div class="absolute text-blue-300 opacity-60 text-6xl select-none pointer-events-none">⭐</div>
+                    
+                    <!-- Angel Gotch Character -->
+                    <div id="character" class="relative z-10 text-4xl transition-transform duration-300 animate-bounce">
+                        👼🏻
+                    </div>
+                    
+                    <!-- Speech / Info Bubble -->
+                    <div id="screen-message" class="bg-white/90 text-blue-900 text-[11px] px-3 py-1 rounded-full shadow mt-1 z-10 text-center max-w-[190px] truncate">
+                        ยินดีต้อนรับสู่หน้าแรก Angel Gotch 👼✨
+                    </div>
+                </div>
+
+                <!-- Screen Footer info -->
+                <div class="flex justify-between text-[11px] text-blue-900 font-bold z-10 px-1">
+                    <span>AGE: <span id="pet-age">1y</span></span>
+                    <span>WT: <span id="pet-weight">12g</span></span>
+                </div>
+            </div>
+
+            <!-- Tamagotchi 3 Action Buttons -->
+            <div class="flex space-x-5 mb-1">
+                <button onclick="feedPet()" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center glow-btn border border-pink-200 text-lg" title="ให้อาหาร">
+                    🍔
+                </button>
+                <button onclick="playPet()" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center glow-btn border border-pink-200 text-lg" title="เล่นกับน้อง">
+                    🎮
+                </button>
+                <button onclick="sleepPet()" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center glow-btn border border-pink-200 text-lg" title="นอนหลับ/สลับโหมด">
+                    🌙
+                </button>
+            </div>
+
+            <!-- Brand text on shell -->
+            <div class="text-[9px] text-pink-900 font-semibold tracking-widest opacity-60">
+                BANDAI STYLE - V.1
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Bar (Home, Group, Check Queue, Contact) -->
+    <nav class="w-full max-w-md bg-white/90 backdrop-blur-md rounded-full shadow-lg px-4 py-3 flex justify-around items-center mb-2 z-10 border border-white/50">
+        <!-- Home -->
+        <button onclick="switchTab('home')" id="tab-home" class="flex flex-col items-center text-pink-600 transition-all">
+            <span class="text-xl">🏠</span>
+            <span class="text-xs font-bold mt-0.5">Home</span>
+        </button>
+        <!-- Group -->
+        <button onclick="switchTab('group')" id="tab-group" class="flex flex-col items-center text-gray-400 hover:text-gray-600 transition-all">
+            <span class="text-xl">📁</span>
+            <span class="text-xs font-semibold mt-0.5">Group</span>
+        </button>
+        <!-- Check Queue -->
+        <button onclick="switchTab('queue')" id="tab-queue" class="flex flex-col items-center text-gray-400 hover:text-gray-600 transition-all">
+            <span class="text-xl">📋</span>
+            <span class="text-xs font-semibold mt-0.5">Check Queue</span>
+        </button>
+        <!-- Contact -->
+        <button onclick="switchTab('contact')" id="tab-contact" class="flex flex-col items-center text-gray-400 hover:text-gray-600 transition-all">
+            <span class="text-xl">📖</span>
+            <span class="text-xs font-semibold mt-0.5">Contact</span>
+        </button>
+    </nav>
+
+    <script>
+        // Real-time clock update
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('current-time').innerText = `${hours}:${minutes}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Tamagotchi state variables
+        let hungry = 74;
+        let happy = 82;
+        let weight = 12;
+        let isSleeping = false;
+
+        function updateStatsDisplay() {
+            document.getElementById('stat-hungry').innerText = hungry + '%';
+            document.getElementById('stat-happy').innerText = happy + '%';
+            document.getElementById('pet-weight').innerText = weight + 'g';
+        }
+
+        function feedPet() {
+            if (isSleeping) {
+                showMsg("น้องกำลังนอนหลับอยู่ 💤");
+                return;
+            }
+            hungry = Math.min(100, hungry + 15);
+            weight += 1;
+            updateStatsDisplay();
+            showMsg("ยัมมี่! อร่อยจัง 🍔✨");
+            animateCharacter();
+        }
+
+        function playPet() {
+            if (isSleeping) {
+                showMsg("ชูst! น้องหลับอยู่นะ 🌙");
+                return;
+            }
+            happy = Math.min(100, happy + 15);
+            hungry = Math.max(0, hungry - 5);
+            updateStatsDisplay();
+            showMsg("เย้ สนุกจังเลย! 🎮💖");
+            animateCharacter();
+        }
+
+        function sleepPet() {
+            isSleeping = !isSleeping;
+            const modeInd = document.getElementById('screen-mode-indicator');
+            if (isSleeping) {
+                modeInd.innerText = "💤 Sleeping";
+                showMsg("น้องนอนหลับแล้ว Zzz...");
+                document.getElementById('character').innerText = "😴";
+            } else {
+                modeInd.innerText = "✨ Active";
+                showMsg("อรุณสวัสดิ์! ตื่นแล้วจ้า 👼🏻");
+                document.getElementById('character').innerText = "👼🏻";
+            }
+        }
+
+        function showMsg(text) {
+            document.getElementById('screen-message').innerText = text;
+        }
+
+        function animateCharacter() {
+            const char = document.getElementById('character');
+            char.style.transform = "scale(1.2) rotate(10deg)";
+            setTimeout(() => {
+                char.style.transform = "scale(1) rotate(0deg)";
+            }, 300);
+        }
+
+        // Bottom Navigation Tab Switching
+        function switchTab(tabName) {
+            // Reset all tab colors
+            ['home', 'group', 'queue', 'contact'].forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                btn.className = "flex flex-col items-center text-gray-400 hover:text-gray-600 transition-all";
+            });
+
+            // Activate selected tab
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.className = "flex flex-col items-center text-pink-600 font-bold transition-all scale-105";
+
+            // Update screen message based on tab
+            if (tabName === 'home') {
+                showMsg("หน้าแรก Angel Gotch 👼✨");
+            } else if (tabName === 'group') {
+                showMsg("หมวดหมู่ Group คอลเลกชัน 📁");
+            } else if (tabName === 'queue') {
+                showMsg("รายการตรวจสอบ Check Queue 📋");
+            } else if (tabName === 'contact') {
+                showMsg("ติดต่อเราหรือพูดคุยกับผู้ดูแล 📞💬");
+            }
+        }
+
+        // Simple Web Audio Sound Effect on Music Button Click
+        document.getElementById('music-btn').addEventListener('click', () => {
+            showMsg("🎵 กำลังเล่นเสียงดนตรีแบ๊คกรา운ด์");
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                oscillator.type = 'triangle';
+                oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // A4 note
+                oscillator.frequency.setValueAtTime(554.37, audioCtx.currentTime + 0.2); // C#5
+                oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.4); // E5
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.8);
+            } catch (e) {
+                console.log("Audio not supported or blocked");
+            }
+        });
+    </script>
+</body>
+</html>
