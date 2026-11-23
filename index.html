@@ -187,30 +187,28 @@
                     </div>
                 </div>
 
-                <!-- ปรับสัดส่วนและรายละเอียดให้เหมือนต้นฉบับ -->
+                <!-- ปรับให้เหมือนรูปที่สอง: ซ้ายมีช่องค้นหาทรงแคปซูล + การ์ดรายละเอียดร้านค้าทรงมนขนาดกระชับ, ขวาเป็นรูปสี่เหลี่ยมมุมมนพอดีความสูง -->
                 <div class="grid grid-cols-12 gap-3 items-stretch">
-                    <!-- คอลัมน์ซ้าย: ช่องค้นหาคิวงาน + การ์ดรายละเอียดร้านค้า -->
-                    <div class="col-span-7 flex flex-col space-y-3">
-                        <div class="relative flex items-center bg-white rounded-full shadow-2xs px-4 py-3 border border-[#f0e6e7]">
+                    <div class="col-span-7 flex flex-col justify-between space-y-2.5">
+                        <div class="relative flex items-center bg-white rounded-full shadow-2xs px-4 py-2.5 border border-[#f0e6e7]">
                             <i class="fa-solid fa-magnifying-glass text-[#c0aab1] text-xs mr-2.5 shrink-0"></i>
                             <input type="text" id="queue-search-input" oninput="renderQueues()" placeholder="ค้นหาคิวงาน..." class="w-full text-xs font-medium text-gray-600 focus:outline-none bg-transparent placeholder-[#c0aab1]">
                         </div>
 
-                        <div class="bg-white rounded-[26px] p-4 border border-[#f0e6e7] shadow-2xs space-y-1.5 flex-1 flex flex-col justify-center min-h-[146px]">
+                        <div class="bg-white rounded-[24px] p-3.5 border border-[#f0e6e7] shadow-2xs space-y-1 flex-1 flex flex-col justify-center">
                             <div class="flex items-center space-x-1.5 text-xs font-bold text-[#8c6b70]">
                                 <i class="fa-regular fa-file-lines text-[#9c7d82] text-xs"></i>
                                 <span>รายละเอียดร้านค้า</span>
                             </div>
-                            <p id="queue-shop-detail-text" class="text-xs text-[#9c7d82] leading-relaxed">
+                            <p id="queue-shop-detail-text" class="text-[11px] text-[#9c7d82] leading-relaxed">
                                 ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ♡
                             </p>
                         </div>
                     </div>
 
-                    <!-- คอลัมน์ขวา: รูปภาพแนวตั้งสี่เหลี่ยมมุมมน -->
                     <div class="col-span-5">
-                        <div class="h-full min-h-[204px] w-full rounded-[28px] overflow-hidden border border-[#f0e6e7] shadow-2xs bg-[#fdfafb]">
-                            <img id="queue-side-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Queue Side Image" class="w-full h-full object-cover">
+                        <div class="h-full min-h-[126px] w-full rounded-[26px] overflow-hidden border border-[#f0e6e7] shadow-2xs bg-[#fdfafb]">
+                            <img id="queue-side-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" alt="Queue Side Image" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
