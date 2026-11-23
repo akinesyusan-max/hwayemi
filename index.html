@@ -580,6 +580,76 @@
         </div>
     </div>
 
+    <!-- ==================== EDIT PRODUCT POPUP MODAL (ADMIN) ==================== -->
+    <div id="edit-product-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-[32px] max-w-sm w-full p-5 relative shadow-2xl border border-[#f2e4e6] space-y-3 text-xs max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-[#f7eff0] pb-2.5">
+                <div class="flex items-center space-x-2 text-sm font-bold text-[#8c6b70]">
+                    <i class="fa-solid fa-pen-to-square text-[#a7898d]"></i>
+                    <span>แก้ไขข้อมูลสินค้า</span>
+                </div>
+                <button type="button" onclick="closeEditProductModal()" class="w-7 h-7 rounded-full bg-[#fdfafb] border border-[#f2e4e6] flex items-center justify-center text-[#a7898d] hover:bg-[#fceef1] transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">ชื่อกลุ่ม</label>
+                <input type="text" id="edit-prod-name" class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">ราคา (฿)</label>
+                <input type="number" id="edit-prod-price" class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">รายละเอียด</label>
+                <textarea id="edit-prod-desc" rows="3" oninput="updateEditProdDescCount()" class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] resize-none"></textarea>
+                <div class="text-right text-[10px] text-[#c0aab1] mt-1">
+                    <span id="edit-prod-desc-count">0</span> ตัวอักษร (ไม่จำกัด)
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">หมวดหมู่</label>
+                <select id="edit-prod-category" class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]"></select>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-xs font-bold text-[#8c6b70]">อัปโหลดรูปภาพใหม่ หรือวางลิงก์</label>
+                <div class="flex items-center space-x-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl px-3 py-2">
+                    <label class="px-3.5 py-1.5 bg-[#fceef1] hover:bg-[#f6dce2] text-[#a7898d] rounded-full text-[11px] font-bold cursor-pointer shrink-0 transition">
+                        เลือกไฟล์
+                        <input type="file" id="edit-prod-file" accept="image/*" onchange="handleEditProductImageFile(this)" class="hidden">
+                    </label>
+                    <span id="edit-prod-file-label" class="text-[11px] text-[#c0aab1] truncate">คงรูปเดิมไว้</span>
+                </div>
+                <input type="text" id="edit-prod-img-url" placeholder="https://..." class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">ลิงก์ตัวอย่างงาน</label>
+                <input type="text" id="edit-prod-sample-url" placeholder="https://..." class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">ป้ายพิเศษ (Tag)</label>
+                <input type="text" id="edit-prod-tag" placeholder="เช่น ฮิต, มาใหม่" class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+            </div>
+
+            <label class="flex items-center space-x-2 pt-1 cursor-pointer select-none">
+                <input type="checkbox" id="edit-prod-featured" class="w-4 h-4 accent-[#a7898d] rounded">
+                <span class="text-xs font-semibold text-[#8c6b70]">แสดงเป็น "สินค้าแนะนำ"</span>
+            </label>
+
+            <div class="grid grid-cols-2 gap-2.5 pt-2">
+                <button type="button" onclick="closeEditProductModal()" class="py-2.5 bg-[#fdfafb] hover:bg-[#f7eff0] text-[#9c7d82] border border-[#f2e4e6] rounded-full font-bold text-xs transition">ยกเลิก</button>
+                <button type="button" onclick="saveEditedProductFromModal()" class="py-2.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-xs shadow-2xs transition">บันทึกการแก้ไข</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== ADMIN FULL PAGE BACKOFFICE ==================== -->
     <div id="admin-full-page" class="hidden min-h-screen bg-[#fffcfc] pb-20">
         <header class="bg-white/95 backdrop-blur-md border-b border-[#f2e4e6] sticky top-0 z-40 px-4 py-3.5 flex justify-between items-center shadow-2xs">
@@ -623,16 +693,13 @@
                 <button onclick="saveShopThemeSettings()" class="w-full py-3 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-sm shadow-2xs transition">บันทึก</button>
             </div>
 
-            <!-- ADMIN PRODUCTS TAB (MATCHING REFERENCE SCREENSHOTS IN SHOP THEME) -->
+            <!-- ADMIN PRODUCTS TAB -->
             <div id="adm-content-products" class="adm-content space-y-4 text-xs">
-                <!-- การ์ด 1: เพิ่มสินค้าเข้าร้าน -->
+                <!-- การ์ด 1: เพิ่มสินค้าเข้าร้าน (ตัดช่องเรทต้นทุนออกแล้ว) -->
                 <div class="bg-white rounded-[28px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3.5">
-                    <div class="flex items-center justify-between border-b border-[#f7eff0] pb-3">
-                        <div class="flex items-center space-x-2 text-sm font-bold text-[#8c6b70]">
-                            <i class="fa-solid fa-circle-plus text-[#a7898d]"></i>
-                            <span id="adm-prod-form-title">เพิ่มสินค้าเข้าร้าน</span>
-                        </div>
-                        <button type="button" id="adm-prod-cancel-edit-btn" onclick="cancelEditProduct()" class="hidden text-[11px] font-semibold text-[#a7898d] underline">ยกเลิกแก้ไข</button>
+                    <div class="flex items-center space-x-2 text-sm font-bold text-[#8c6b70] border-b border-[#f7eff0] pb-3">
+                        <i class="fa-solid fa-circle-plus text-[#a7898d]"></i>
+                        <span>เพิ่มสินค้าเข้าร้าน</span>
                     </div>
 
                     <div>
@@ -641,17 +708,10 @@
                                class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-[#8c6b70] mb-1">ราคา (฿)</label>
-                            <input type="number" id="adm-prod-price" placeholder="0"
-                                   class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-[#8c6b70] mb-1">เรท (฿)</label>
-                            <input type="text" id="adm-prod-rate" placeholder="เช่น ทุน ฿40 หรือเรท"
-                                   class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
-                        </div>
+                    <div>
+                        <label class="block text-xs font-bold text-[#8c6b70] mb-1">ราคา (฿)</label>
+                        <input type="number" id="adm-prod-price" placeholder="0"
+                               class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
                     </div>
 
                     <div>
@@ -698,13 +758,13 @@
                         <span class="text-xs font-semibold text-[#8c6b70]">แสดงเป็น "สินค้าแนะนำ"</span>
                     </label>
 
-                    <button type="button" id="adm-prod-submit-btn" onclick="saveCloudProduct()"
+                    <button type="button" onclick="saveCloudProduct()"
                             class="w-full py-3 bg-[#a7898d] hover:bg-[#927377] active:scale-[0.99] text-white rounded-full font-bold text-xs shadow-sm transition">
                         อัปโหลดสินค้าเข้าคลาวด์ ☁
                     </button>
                 </div>
 
-                <!-- การ์ด 2: จัดการหมวดหมู่ -->
+                <!-- การ์ด 2: จัดการหมวดหมู่ (ตัดจุดหกจุดและข้อความกดแล้วลากออกแล้ว) -->
                 <div class="bg-white rounded-[28px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3">
                     <div class="flex items-center space-x-2 text-sm font-bold text-[#8c6b70] border-b border-[#f7eff0] pb-2.5">
                         <i class="fa-solid fa-list text-[#a7898d]"></i>
@@ -721,10 +781,6 @@
                             เพิ่ม
                         </button>
                     </div>
-
-                    <p class="text-[11px] text-[#c0aab1]">
-                        <i class="fa-solid fa-grip-vertical mr-1"></i> กดค้างที่ปุ่มจับแล้วลาก เพื่อจัดลำดับหมวดหมู่
-                    </p>
 
                     <div id="admin-category-pills" class="flex flex-wrap gap-2 pt-1"></div>
                 </div>
@@ -829,9 +885,8 @@
         let customStampImageUrl = "";
         let activeStampName = "mimi";
 
-        // สถานะสำหรับฟอร์มเพิ่ม/แก้ไขสินค้าในระบบแอดมิน
+        // สถานะสำหรับป็อปอัพแก้ไขสินค้า
         let editingProductId = null;
-        let uploadedAdminProductImgUrl = "";
 
         let appState = {
             shopName: "ชื่อร้าน",
@@ -841,8 +896,8 @@
                 { id: 'mimiw', name: 'mimiw' }
             ],
             products: [
-                { id: 1, name: "ชื่อกลุ่ม", price: 50, rate: "", desc: "", sampleUrl: "", tag: "", category: 'All', featured: true, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=500" },
-                { id: 2, name: "ชื่อกลุ่ม", price: 50, rate: "", desc: "", sampleUrl: "", tag: "", category: 'All', featured: true, img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=500" }
+                { id: 1, name: "ชื่อกลุ่ม", price: 50, desc: "", sampleUrl: "", tag: "", category: 'All', featured: true, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=500" },
+                { id: 2, name: "ชื่อกลุ่ม", price: 50, desc: "", sampleUrl: "", tag: "", category: 'All', featured: true, img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=500" }
             ],
             queues: [
                 { id: 101, name: "k'sobell", service: "ปกกลุ่มแนวเจ้าหญิง", date: "11/09/69", status: "เสร็จแล้ว", seq: 1 },
@@ -867,24 +922,53 @@
             }
         }
 
+        function updateEditProdDescCount() {
+            const descEl = document.getElementById('edit-prod-desc');
+            const countEl = document.getElementById('edit-prod-desc-count');
+            if (descEl && countEl) {
+                countEl.innerText = descEl.value.length;
+            }
+        }
+
         function handleAdminProductImageFile(input) {
             if (input.files && input.files[0]) {
                 const file = input.files[0];
-                uploadedAdminProductImgUrl = URL.createObjectURL(file);
+                const url = URL.createObjectURL(file);
                 document.getElementById('adm-prod-file-label').innerText = file.name;
-                document.getElementById('adm-prod-img-url').value = uploadedAdminProductImgUrl;
+                document.getElementById('adm-prod-img-url').value = url;
+            }
+        }
+
+        function handleEditProductImageFile(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const url = URL.createObjectURL(file);
+                document.getElementById('edit-prod-file-label').innerText = file.name;
+                document.getElementById('edit-prod-img-url').value = url;
             }
         }
 
         function populateAdminCategorySelect() {
-            const selectEl = document.getElementById('adm-prod-category');
-            if (!selectEl) return;
-            const currentVal = selectEl.value;
-            selectEl.innerHTML = appState.categories.map(c =>
+            const optionsHtml = appState.categories.map(c =>
                 `<option value="${c.id}">${c.name}</option>`
             ).join('');
-            if (currentVal && appState.categories.some(c => c.id === currentVal)) {
-                selectEl.value = currentVal;
+
+            const selectEl = document.getElementById('adm-prod-category');
+            if (selectEl) {
+                const currentVal = selectEl.value;
+                selectEl.innerHTML = optionsHtml;
+                if (currentVal && appState.categories.some(c => c.id === currentVal)) {
+                    selectEl.value = currentVal;
+                }
+            }
+
+            const editSelectEl = document.getElementById('edit-prod-category');
+            if (editSelectEl) {
+                const currentEditVal = editSelectEl.value;
+                editSelectEl.innerHTML = optionsHtml;
+                if (currentEditVal && appState.categories.some(c => c.id === currentEditVal)) {
+                    editSelectEl.value = currentEditVal;
+                }
             }
         }
 
@@ -928,9 +1012,9 @@
             const pillsEl = document.getElementById('admin-category-pills');
             if (!pillsEl) return;
 
+            // เอาสัญลักษณ์จุดหกจุดด้านหน้าออกแล้ว
             pillsEl.innerHTML = appState.categories.map(c => `
-                <div class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-[#fdfafb] border border-[#f2e4e6] text-xs font-semibold text-[#8c6b70]">
-                    <i class="fa-solid fa-grip-vertical text-[10px] text-[#c0aab1]"></i>
+                <div class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-[#fdfafb] border border-[#f2e4e6] text-xs font-semibold text-[#8c6b70]">
                     <span>${c.name}</span>
                     ${c.id !== 'All' ? `<button type="button" onclick="removeAdminCategory('${c.id}')" class="text-[#b5979c] hover:text-[#8c6b70] ml-1 font-bold">×</button>` : ''}
                 </div>
@@ -940,7 +1024,6 @@
         function saveCloudProduct() {
             const name = document.getElementById('adm-prod-name').value.trim();
             const price = parseFloat(document.getElementById('adm-prod-price').value) || 0;
-            const rate = document.getElementById('adm-prod-rate').value.trim();
             const desc = document.getElementById('adm-prod-desc').value;
             const category = document.getElementById('adm-prod-category').value || 'All';
             const imgUrl = document.getElementById('adm-prod-img-url').value.trim() || "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=500";
@@ -953,36 +1036,20 @@
                 return;
             }
 
-            if (editingProductId !== null) {
-                const idx = appState.products.findIndex(p => p.id === editingProductId);
-                if (idx >= 0) {
-                    appState.products[idx] = {
-                        ...appState.products[idx],
-                        name, price, rate, desc, category, img: imgUrl, sampleUrl, tag, featured
-                    };
-                }
-                editingProductId = null;
-                document.getElementById('adm-prod-form-title').innerText = "เพิ่มสินค้าเข้าร้าน";
-                document.getElementById('adm-prod-submit-btn').innerText = "อัปโหลดสินค้าเข้าคลาวด์ ☁";
-                document.getElementById('adm-prod-cancel-edit-btn').classList.add('hidden');
-                alert("อัปเดตสินค้าเรียบร้อยแล้วค่ะ!");
-            } else {
-                appState.products.unshift({
-                    id: Date.now(),
-                    name, price, rate, desc, category, img: imgUrl, sampleUrl, tag, featured
-                });
-                alert("อัปโหลดสินค้าเข้าคลาวด์เรียบร้อยแล้วค่ะ!");
-            }
+            appState.products.unshift({
+                id: Date.now(),
+                name, price, desc, category, img: imgUrl, sampleUrl, tag, featured
+            });
 
             resetAdminProductForm();
             renderAdminCloudProducts();
             renderProducts();
+            alert("อัปโหลดสินค้าเข้าคลาวด์เรียบร้อยแล้วค่ะ!");
         }
 
         function resetAdminProductForm() {
             document.getElementById('adm-prod-name').value = "";
             document.getElementById('adm-prod-price').value = "";
-            document.getElementById('adm-prod-rate').value = "";
             document.getElementById('adm-prod-desc').value = "";
             document.getElementById('adm-prod-file').value = "";
             document.getElementById('adm-prod-file-label').innerText = "ไม่ได้เลือกไฟล์";
@@ -990,45 +1057,70 @@
             document.getElementById('adm-prod-sample-url').value = "";
             document.getElementById('adm-prod-tag').value = "";
             document.getElementById('adm-prod-featured').checked = true;
-            uploadedAdminProductImgUrl = "";
             updateProdDescCount();
         }
 
-        function editAdminProduct(prodId) {
+        // เปิดป็อปอัพแก้ไขสินค้าเมื่อกดปุ่มดินสอ
+        function openEditProductModal(prodId) {
             const prod = appState.products.find(p => p.id === prodId);
             if (!prod) return;
 
             editingProductId = prod.id;
-            document.getElementById('adm-prod-form-title').innerText = "แก้ไขสินค้า";
-            document.getElementById('adm-prod-submit-btn').innerText = "บันทึกการแก้ไขสินค้า";
-            document.getElementById('adm-prod-cancel-edit-btn').classList.remove('hidden');
+            populateAdminCategorySelect();
 
-            document.getElementById('adm-prod-name').value = prod.name || "";
-            document.getElementById('adm-prod-price').value = prod.price || "";
-            document.getElementById('adm-prod-rate').value = prod.rate || "";
-            document.getElementById('adm-prod-desc').value = prod.desc || "";
-            document.getElementById('adm-prod-category').value = prod.category || "All";
-            document.getElementById('adm-prod-img-url').value = prod.img || "";
-            document.getElementById('adm-prod-sample-url').value = prod.sampleUrl || "";
-            document.getElementById('adm-prod-tag').value = prod.tag || "";
-            document.getElementById('adm-prod-featured').checked = !!prod.featured;
-            updateProdDescCount();
+            document.getElementById('edit-prod-name').value = prod.name || "";
+            document.getElementById('edit-prod-price').value = prod.price || 0;
+            document.getElementById('edit-prod-desc').value = prod.desc || "";
+            document.getElementById('edit-prod-category').value = prod.category || "All";
+            document.getElementById('edit-prod-file').value = "";
+            document.getElementById('edit-prod-file-label').innerText = "คงรูปเดิมไว้";
+            document.getElementById('edit-prod-img-url').value = prod.img || "";
+            document.getElementById('edit-prod-sample-url').value = prod.sampleUrl || "";
+            document.getElementById('edit-prod-tag').value = prod.tag || "";
+            document.getElementById('edit-prod-featured').checked = !!prod.featured;
+            updateEditProdDescCount();
 
-            document.getElementById('adm-content-products').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('edit-product-modal').classList.remove('hidden');
         }
 
-        function cancelEditProduct() {
+        function closeEditProductModal() {
             editingProductId = null;
-            document.getElementById('adm-prod-form-title').innerText = "เพิ่มสินค้าเข้าร้าน";
-            document.getElementById('adm-prod-submit-btn').innerText = "อัปโหลดสินค้าเข้าคลาวด์ ☁";
-            document.getElementById('adm-prod-cancel-edit-btn').classList.add('hidden');
-            resetAdminProductForm();
+            document.getElementById('edit-product-modal').classList.add('hidden');
+        }
+
+        function saveEditedProductFromModal() {
+            if (editingProductId === null) return;
+            const name = document.getElementById('edit-prod-name').value.trim();
+            if (!name) {
+                alert("กรุณากรอกชื่อกลุ่ม/ชื่อสินค้าก่อนค่ะ");
+                return;
+            }
+
+            const idx = appState.products.findIndex(p => p.id === editingProductId);
+            if (idx >= 0) {
+                appState.products[idx] = {
+                    ...appState.products[idx],
+                    name: name,
+                    price: parseFloat(document.getElementById('edit-prod-price').value) || 0,
+                    desc: document.getElementById('edit-prod-desc').value,
+                    category: document.getElementById('edit-prod-category').value || "All",
+                    img: document.getElementById('edit-prod-img-url').value.trim() || appState.products[idx].img,
+                    sampleUrl: document.getElementById('edit-prod-sample-url').value.trim(),
+                    tag: document.getElementById('edit-prod-tag').value.trim(),
+                    featured: document.getElementById('edit-prod-featured').checked
+                };
+            }
+
+            closeEditProductModal();
+            renderAdminCloudProducts();
+            renderProducts();
+            alert("บันทึกการแก้ไขสินค้าเรียบร้อยแล้วค่ะ!");
         }
 
         function deleteAdminProduct(prodId) {
             if (!confirm("ต้องการลบสินค้านี้ออกจากคลังสินค้าคลาวด์ใช่ไหมคะ?")) return;
             appState.products = appState.products.filter(p => p.id !== prodId);
-            if (editingProductId === prodId) cancelEditProduct();
+            if (editingProductId === prodId) closeEditProductModal();
             renderAdminCloudProducts();
             renderProducts();
         }
@@ -1049,7 +1141,6 @@
             }
 
             listEl.innerHTML = filtered.map(p => {
-                const ratePart = p.rate ? ` | ${p.rate}` : "";
                 const recBadge = p.featured
                     ? `<span class="px-2.5 py-0.5 rounded-full bg-[#fceef1] text-[#a7898d] text-[10px] font-bold border border-[#f2e4e6]">แนะนำ</span>`
                     : "";
@@ -1060,12 +1151,12 @@
                             <img src="${p.img}" alt="${p.name}" class="w-11 h-11 rounded-xl object-cover border border-[#f2e4e6] shrink-0 bg-white">
                             <div class="min-w-0">
                                 <div class="font-bold text-[#7d6267] text-xs truncate">${p.name}</div>
-                                <div class="text-[11px] font-semibold text-[#a7898d] truncate">฿${p.price}${ratePart}</div>
+                                <div class="text-[11px] font-semibold text-[#a7898d] truncate">฿${p.price}</div>
                             </div>
                         </div>
                         <div class="flex items-center space-x-2 shrink-0 ml-2">
                             ${recBadge}
-                            <button type="button" onclick="editAdminProduct(${p.id})" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#a7898d] hover:bg-[#fceef1] flex items-center justify-center transition" title="แก้ไข">
+                            <button type="button" onclick="openEditProductModal(${p.id})" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#a7898d] hover:bg-[#fceef1] flex items-center justify-center transition" title="แก้ไข">
                                 <i class="fa-solid fa-pen text-[10px]"></i>
                             </button>
                             <button type="button" onclick="deleteAdminProduct(${p.id})" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#c87d8a] hover:bg-[#fceef1] flex items-center justify-center transition" title="ลบ">
