@@ -183,31 +183,34 @@
             <section id="view-queue" class="view-section hidden space-y-4">
                 <div class="bg-white rounded-[32px] p-2 shadow-sm border border-[#f7eff0]">
                     <div class="h-40 w-full rounded-[24px] overflow-hidden relative border border-[#f0e6e7]">
-                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80" alt="Queue Banner" class="w-full h-full object-cover opacity-85">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80" alt="Queue Banner" class="w-full h-full object-cover opacity-80">
                     </div>
                 </div>
 
-                <div class="max-w-full mx-auto grid grid-cols-12 gap-2.5 items-stretch">
-                    <div class="col-span-5 flex flex-col justify-between space-y-2.5">
-                        <div class="relative flex items-center bg-white rounded-full shadow-2xs px-3.5 py-2.5 border border-[#f2e4e6]">
-                            <i class="fa-solid fa-magnifying-glass text-[#c0aab1] text-xs mr-2 shrink-0"></i>
-                            <input type="text" id="queue-search-input" oninput="renderQueues()" placeholder="ค้นหาคิวงาน..." class="w-full text-[11px] font-medium text-gray-600 focus:outline-none bg-transparent placeholder-[#c0aab1]">
+                <!-- ปรับสัดส่วนและรายละเอียดให้เหมือนต้นฉบับ -->
+                <div class="grid grid-cols-12 gap-3 items-stretch">
+                    <!-- คอลัมน์ซ้าย: ช่องค้นหาคิวงาน + การ์ดรายละเอียดร้านค้า -->
+                    <div class="col-span-7 flex flex-col space-y-3">
+                        <div class="relative flex items-center bg-white rounded-full shadow-2xs px-4 py-3 border border-[#f0e6e7]">
+                            <i class="fa-solid fa-magnifying-glass text-[#c0aab1] text-xs mr-2.5 shrink-0"></i>
+                            <input type="text" id="queue-search-input" oninput="renderQueues()" placeholder="ค้นหาคิวงาน..." class="w-full text-xs font-medium text-gray-600 focus:outline-none bg-transparent placeholder-[#c0aab1]">
                         </div>
 
-                        <div class="bg-white rounded-[22px] p-3.5 border border-[#f2e4e6] shadow-2xs space-y-1 flex-1 flex flex-col justify-center">
-                            <div class="flex items-center space-x-1.5 text-[11px] font-bold text-[#7d6267]">
+                        <div class="bg-white rounded-[26px] p-4 border border-[#f0e6e7] shadow-2xs space-y-1.5 flex-1 flex flex-col justify-center min-h-[146px]">
+                            <div class="flex items-center space-x-1.5 text-xs font-bold text-[#8c6b70]">
                                 <i class="fa-regular fa-file-lines text-[#9c7d82] text-xs"></i>
                                 <span>รายละเอียดร้านค้า</span>
                             </div>
-                            <p id="queue-shop-detail-text" class="text-[11px] text-[#9c7d82] leading-relaxed">
-                                ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨
+                            <p id="queue-shop-detail-text" class="text-xs text-[#9c7d82] leading-relaxed">
+                                ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ♡
                             </p>
                         </div>
                     </div>
 
+                    <!-- คอลัมน์ขวา: รูปภาพแนวตั้งสี่เหลี่ยมมุมมน -->
                     <div class="col-span-5">
-                        <div class="aspect-square w-full rounded-[24px] overflow-hidden border border-[#f2e4e6] shadow-2xs bg-[#fdfafb]">
-                            <img id="queue-side-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" alt="Queue Side Image" class="w-full h-full object-cover">
+                        <div class="h-full min-h-[204px] w-full rounded-[28px] overflow-hidden border border-[#f0e6e7] shadow-2xs bg-[#fdfafb]">
+                            <img id="queue-side-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Queue Side Image" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -611,28 +614,11 @@
 
         <main class="max-w-4xl mx-auto p-4 space-y-4">
             <div id="adm-content-shop" class="adm-content space-y-4 text-xs bg-white p-5 rounded-[32px] shadow-sm border border-[#f7eff0]">
-                <h3 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-store text-[#a7898d] mr-2"></i>ตั้งค่าร้าน, หน้าคิว & รูปทามาก็อตจิ</h3>
+                <h3 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-store text-[#a7898d] mr-2"></i>ตั้งค่าร้าน & รูปทามาก็อตจิ</h3>
                 <div>
                     <label class="font-bold text-gray-700">ชื่อร้าน</label>
                     <input type="text" id="adm-shop-name-input" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none" value="ชื่อร้าน">
                 </div>
-
-                <div>
-                    <label class="font-bold text-gray-700">รายละเอียดร้านค้า (หน้าเช็คคิว)</label>
-                    <textarea id="adm-queue-shop-detail-input" rows="2" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none">ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨</textarea>
-                </div>
-
-                <div class="bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl p-3.5 space-y-2">
-                    <label class="font-bold text-gray-700 block">รูปภาพด้านข้างหน้าเช็คคิว (Queue Side Image)</label>
-                    <div class="flex items-center space-x-3">
-                        <img id="adm-queue-side-preview" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" alt="Queue Side Preview" class="w-14 h-16 rounded-2xl object-cover border border-[#f2e4e6] shrink-0">
-                        <div class="flex-1 space-y-2">
-                            <input type="file" id="adm-queue-side-file-input" accept="image/*" onchange="handleQueueSideImageUpload(this)" class="w-full text-xs text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] file:font-bold file:bg-[#fceef1] file:text-[#a7898d]">
-                            <input type="text" id="adm-queue-side-url-input" oninput="handleQueueSideUrlInput(this.value)" placeholder="หรือวางลิงก์รูปภาพ (URL)" class="w-full px-3 py-2 bg-white border border-[#f2e4e6] rounded-xl text-[11px] text-gray-600 focus:outline-none">
-                        </div>
-                    </div>
-                </div>
-
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                     <div>
                         <label class="font-bold text-gray-700 block mb-1">อัปโหลดรูปตัวเครื่องทามาก็อตจิ (PNG)</label>
@@ -734,8 +720,6 @@
 
         let appState = {
             shopName: "ชื่อร้าน",
-            queueShopDetail: "ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨",
-            queueSideImage: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80",
             categories: [
                 { id: 'All', name: 'All' },
                 { id: 'momonga', name: 'momonga' },
@@ -759,7 +743,6 @@
             cart: []
         };
 
-        // ==================== STAMP SYSTEM FUNCTIONS ====================
         function renderStampCard(nameQuery) {
             const gridEl = document.getElementById('stamp-grid-container');
             const labelEl = document.getElementById('stamp-progress-label');
@@ -903,7 +886,6 @@
             renderAdminStampList();
         }
 
-        // ==================== REVIEW SYSTEM FUNCTIONS ====================
         function setReviewRating(starCount) {
             selectedReviewRating = starCount;
             const buttons = document.querySelectorAll('#review-star-picker .star-picker-btn');
@@ -1077,27 +1059,10 @@
             if(tabId === 'member') renderStampCard(activeStampName);
         }
 
-        function syncQueueShopDisplay() {
-            const detailEl = document.getElementById('queue-shop-detail-text');
-            const sideImgEl = document.getElementById('queue-side-img');
-            const sidePreviewEl = document.getElementById('adm-queue-side-preview');
-            const detailInputEl = document.getElementById('adm-queue-shop-detail-input');
-            const sideUrlInputEl = document.getElementById('adm-queue-side-url-input');
-
-            if (detailEl) detailEl.innerText = appState.queueShopDetail;
-            if (sideImgEl && appState.queueSideImage) sideImgEl.src = appState.queueSideImage;
-            if (sidePreviewEl && appState.queueSideImage) sidePreviewEl.src = appState.queueSideImage;
-            if (detailInputEl) detailInputEl.value = appState.queueShopDetail;
-            if (sideUrlInputEl && !appState.queueSideImage.startsWith('blob:')) {
-                sideUrlInputEl.value = appState.queueSideImage;
-            }
-        }
-
         function initApp() {
             document.getElementById('shop-title-header').innerText = appState.shopName;
             const screenTitle = document.getElementById('tama-screen-title');
             if(screenTitle) screenTitle.innerText = `${appState.shopName} ♡`;
-            syncQueueShopDisplay();
             renderCategoriesTabs();
             updateCartBadge();
             renderReviews();
@@ -1329,14 +1294,12 @@
             }).join('');
         }
 
-        // Admin
         function openAdminLoginModal() { document.getElementById('admin-login-modal').classList.remove('hidden'); }
         function verifyAdminLogin() {
             if(document.getElementById('admin-pass-input').value === "admin1234") {
                 document.getElementById('admin-login-modal').classList.add('hidden');
                 document.getElementById('main-shop-container').classList.add('hidden');
                 document.getElementById('admin-full-page').classList.remove('hidden');
-                syncQueueShopDisplay();
                 renderAdminStampList();
             } else { alert("รหัสผ่านไม่ถูกต้อง"); }
         }
@@ -1357,24 +1320,6 @@
             if (subTabId === 'stamp') renderAdminStampList();
         }
 
-        function handleQueueSideImageUpload(input) {
-            if (input.files && input.files[0]) {
-                const url = URL.createObjectURL(input.files[0]);
-                appState.queueSideImage = url;
-                const previewEl = document.getElementById('adm-queue-side-preview');
-                if (previewEl) previewEl.src = url;
-            }
-        }
-
-        function handleQueueSideUrlInput(val) {
-            const trimmed = (val || '').trim();
-            if (trimmed) {
-                appState.queueSideImage = trimmed;
-                const previewEl = document.getElementById('adm-queue-side-preview');
-                if (previewEl) previewEl.src = trimmed;
-            }
-        }
-
         function previewTamaAsset(type, input) {
             if (input.files && input.files[0]) {
                 const url = URL.createObjectURL(input.files[0]);
@@ -1392,16 +1337,7 @@
 
         function saveShopThemeSettings() {
             const newName = document.getElementById('adm-shop-name-input').value.trim();
-            const newDetail = document.getElementById('adm-queue-shop-detail-input').value.trim();
-            const newSideUrl = document.getElementById('adm-queue-side-url-input').value.trim();
-
             if (newName) appState.shopName = newName;
-            if (newDetail) appState.queueShopDetail = newDetail;
-            if (newSideUrl && !appState.queueSideImage.startsWith('blob:')) {
-                appState.queueSideImage = newSideUrl;
-            }
-
-            syncQueueShopDisplay();
             alert("บันทึกการตั้งค่าเรียบร้อยแล้วค่ะ!");
         }
 
