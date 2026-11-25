@@ -550,7 +550,7 @@
         <div class="bg-white rounded-[32px] max-w-sm w-full p-5 relative shadow-2xl border border-[#f7eff0] space-y-4 max-h-[80vh] overflow-y-auto text-xs">
             <div class="flex justify-between items-center border-b border-[#f7eff0] pb-2">
                 <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-basket-shopping text-[#a7898d]"></i> ตะกร้าสินค้า</h3>
-                <button onclick="closeCartModal()" class="w-6 h-6 rounded-full bg-[#fdfafb] border border-[#f7eff0] flex items-center justify-center text-gray-500"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeCartModal()" class="w-6 h-6 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-gray-500"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div id="cart-items-container" class="space-y-2"></div>
             <div class="border-t border-[#f7eff0] pt-3 flex justify-between items-center font-bold text-sm">
@@ -665,8 +665,8 @@
         <div class="max-w-xl mx-auto px-4 pt-4">
             <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-none text-xs">
                 <button onclick="switchAdminSubTab('shop')" id="adm-tab-shop" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">ร้าน/ธีม</button>
-                <button onclick="switchAdminSubTab('products')" id="adm-tab-products" class="adm-tab px-4 py-2 rounded-full font-bold bg-[#a7898d] text-white shrink-0 shadow-2xs">สินค้า</button>
-                <button onclick="switchAdminSubTab('queue')" id="adm-tab-queue" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">คิว</button>
+                <button onclick="switchAdminSubTab('products')" id="adm-tab-products" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">สินค้า</button>
+                <button onclick="switchAdminSubTab('queue')" id="adm-tab-queue" class="adm-tab px-4 py-2 rounded-full font-bold bg-[#a7898d] text-white shrink-0 shadow-2xs">คิว</button>
                 <button onclick="switchAdminSubTab('stamp')" id="adm-tab-stamp" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">สะสมแต้ม</button>
                 <button onclick="switchAdminSubTab('qr')" id="adm-tab-qr" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">QR Code</button>
             </div>
@@ -694,8 +694,7 @@
             </div>
 
             <!-- ADMIN PRODUCTS TAB -->
-            <div id="adm-content-products" class="adm-content space-y-4 text-xs">
-                <!-- การ์ด 1: เพิ่มสินค้าเข้าร้าน (ตัดช่องเรทต้นทุนออกแล้ว) -->
+            <div id="adm-content-products" class="adm-content space-y-4 text-xs hidden">
                 <div class="bg-white rounded-[28px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3.5">
                     <div class="flex items-center space-x-2 text-sm font-bold text-[#8c6b70] border-b border-[#f7eff0] pb-3">
                         <i class="fa-solid fa-circle-plus text-[#a7898d]"></i>
@@ -764,7 +763,6 @@
                     </button>
                 </div>
 
-                <!-- การ์ด 2: จัดการหมวดหมู่ (ตัดจุดหกจุดและข้อความกดแล้วลากออกแล้ว) -->
                 <div class="bg-white rounded-[28px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3">
                     <div class="flex items-center space-x-2 text-sm font-bold text-[#8c6b70] border-b border-[#f7eff0] pb-2.5">
                         <i class="fa-solid fa-list text-[#a7898d]"></i>
@@ -785,7 +783,6 @@
                     <div id="admin-category-pills" class="flex flex-wrap gap-2 pt-1"></div>
                 </div>
 
-                <!-- การ์ด 3: คลังสินค้าคลาวด์ -->
                 <div class="bg-white rounded-[28px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3">
                     <div class="text-sm font-bold text-[#8c6b70]">
                         คลังสินค้าคลาวด์ (<span id="adm-cloud-count">0</span>)
@@ -801,10 +798,103 @@
                 </div>
             </div>
 
-            <!-- ADMIN QUEUE TAB -->
-            <div id="adm-content-queue" class="adm-content space-y-4 text-xs bg-white p-5 rounded-[28px] shadow-2xs border border-[#f2e4e6] hidden">
-                <h3 class="font-bold text-sm text-[#8c6b70]"><i class="fa-solid fa-list-check text-[#a7898d] mr-2"></i>จัดการคิว</h3>
-                <div id="admin-queue-list" class="space-y-2"></div>
+            <!-- ADMIN QUEUE TAB (MATCHING REFERENCE IMAGE IN SHOP THEME) -->
+            <div id="adm-content-queue" class="adm-content space-y-4 text-xs">
+                <div class="bg-white rounded-[30px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3.5">
+                    <!-- แถวบนสุด: สวิตช์ คิวด่วน -->
+                    <div class="flex items-center justify-end space-x-2.5 pb-0.5">
+                        <span class="text-xs font-extrabold text-[#7d6267]">คิวด่วน</span>
+                        <span class="text-sm">🔥</span>
+                        <label class="relative inline-flex items-center cursor-pointer select-none">
+                            <input type="checkbox" id="adm-queue-rush-toggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-[#ead9dc] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all peer-checked:bg-[#a7898d] shadow-inner"></div>
+                        </label>
+                    </div>
+
+                    <!-- ชื่อลูกค้า -->
+                    <div>
+                        <input type="text" id="adm-queue-customer-name" placeholder="ชื่อลูกค้า"
+                               class="w-full px-4 py-3 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] placeholder-[#b9a0a5]">
+                    </div>
+
+                    <!-- ประเภทงาน -->
+                    <div>
+                        <input type="text" id="adm-queue-job-type" placeholder="ประเภทงาน"
+                               class="w-full px-4 py-3 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] placeholder-[#b9a0a5]">
+                    </div>
+
+                    <!-- ช่องทาง -->
+                    <div>
+                        <input type="text" id="adm-queue-channel" placeholder="ช่องทาง"
+                               class="w-full px-4 py-3 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] placeholder-[#b9a0a5]">
+                    </div>
+
+                    <!-- รายละเอียดเพิ่มเติม (ถ้ามี)... -->
+                    <div>
+                        <textarea id="adm-queue-note" rows="3" placeholder="รายละเอียดเพิ่มเติม (ถ้ามี)..."
+                                  class="w-full px-4 py-3 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] placeholder-[#b9a0a5] resize-none"></textarea>
+                    </div>
+
+                    <!-- START DATE -->
+                    <div class="bg-[#fdfafb] border border-[#e3cdd1] rounded-2xl px-3.5 py-2.5 flex items-center justify-between gap-2">
+                        <div class="space-y-1.5 min-w-0">
+                            <div class="flex items-center space-x-2 text-[11px] font-extrabold text-[#9b7c81] tracking-wide">
+                                <i class="fa-regular fa-calendar text-xs text-[#a7898d]"></i>
+                                <span>START DATE</span>
+                            </div>
+                            <label class="flex items-center space-x-2 cursor-pointer select-none text-xs font-medium text-[#7d6267]">
+                                <input type="checkbox" id="adm-queue-start-unknown" onchange="toggleQueueDateUnknown('start')"
+                                       class="w-4 h-4 rounded-full accent-[#a7898d] border border-[#d6bcc0]">
+                                <span>ยังไม่ทราบกำหนด</span>
+                            </label>
+                        </div>
+
+                        <div class="relative shrink-0">
+                            <button type="button" id="adm-queue-start-btn" onclick="triggerQueueDatePicker('start')"
+                                    class="px-4 py-2.5 bg-white border border-[#f2e4e6] rounded-xl text-xs font-bold text-[#7d6267] hover:bg-[#fceef1] transition shadow-2xs">
+                                24 พ.ย. 2569
+                            </button>
+                            <input type="date" id="adm-queue-start-picker" value="2026-11-24" onchange="handleQueueDateChange('start', this.value)"
+                                   class="sr-only">
+                        </div>
+                    </div>
+
+                    <!-- DEADLINE -->
+                    <div class="bg-[#fdfafb] border border-[#e3cdd1] rounded-2xl px-3.5 py-2.5 flex items-center justify-between gap-2">
+                        <div class="space-y-1.5 min-w-0">
+                            <div class="flex items-center space-x-2 text-[11px] font-extrabold text-[#9b7c81] tracking-wide">
+                                <i class="fa-regular fa-calendar text-xs text-[#a7898d]"></i>
+                                <span>DEADLINE</span>
+                            </div>
+                            <label class="flex items-center space-x-2 cursor-pointer select-none text-xs font-medium text-[#7d6267]">
+                                <input type="checkbox" id="adm-queue-deadline-unknown" onchange="toggleQueueDateUnknown('deadline')"
+                                       class="w-4 h-4 rounded-full accent-[#a7898d] border border-[#d6bcc0]">
+                                <span>ยังไม่ทราบกำหนด</span>
+                            </label>
+                        </div>
+
+                        <div class="relative shrink-0">
+                            <button type="button" id="adm-queue-deadline-btn" onclick="triggerQueueDatePicker('deadline')"
+                                    class="px-4 py-2.5 bg-white border border-[#f2e4e6] rounded-xl text-xs font-bold text-[#7d6267] hover:bg-[#fceef1] transition shadow-2xs">
+                                4 ธ.ค. 2569
+                            </button>
+                            <input type="date" id="adm-queue-deadline-picker" value="2026-12-04" onchange="handleQueueDateChange('deadline', this.value)"
+                                   class="sr-only">
+                        </div>
+                    </div>
+
+                    <!-- ปุ่มบันทึกคิวงาน -->
+                    <button type="button" onclick="saveAdminQueueJob()"
+                            class="w-full py-3.5 bg-[#a7898d] hover:bg-[#927377] active:scale-[0.99] text-white rounded-2xl font-bold text-sm shadow-sm transition">
+                        บันทึกคิวงาน
+                    </button>
+                </div>
+
+                <!-- รายการคิวในระบบหลังบ้าน -->
+                <div class="bg-white rounded-[28px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3">
+                    <div class="font-bold text-sm text-[#8c6b70]">รายการคิวทั้งหมด (<span id="adm-queue-total-count">0</span>)</div>
+                    <div id="admin-queue-list" class="space-y-2.5"></div>
+                </div>
             </div>
 
             <!-- ADMIN STAMP TAB -->
@@ -885,8 +975,12 @@
         let customStampImageUrl = "";
         let activeStampName = "mimi";
 
-        // สถานะสำหรับป็อปอัพแก้ไขสินค้า
         let editingProductId = null;
+
+        let queueDateState = {
+            start: { iso: "2026-11-24", label: "24 พ.ย. 2569", unknown: false },
+            deadline: { iso: "2026-12-04", label: "4 ธ.ค. 2569", unknown: false }
+        };
 
         let appState = {
             shopName: "ชื่อร้าน",
@@ -900,8 +994,8 @@
                 { id: 2, name: "ชื่อกลุ่ม", price: 50, desc: "", sampleUrl: "", tag: "", category: 'All', featured: true, img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=500" }
             ],
             queues: [
-                { id: 101, name: "k'sobell", service: "ปกกลุ่มแนวเจ้าหญิง", date: "11/09/69", status: "เสร็จแล้ว", seq: 1 },
-                { id: 102, name: "ไม่ทราบ", service: "Sign", date: "15/09/69", status: "กำลังทำ", seq: 2 }
+                { id: 101, name: "k'sobell", service: "ปกกลุ่มแนวเจ้าหญิง", channel: "LINE", note: "", startDate: "24 พ.ย. 2569", deadline: "4 ธ.ค. 2569", rush: false, date: "11/09/69", status: "เสร็จแล้ว", seq: 1 },
+                { id: 102, name: "ไม่ทราบ", service: "Sign", channel: "LINE", note: "", startDate: "24 พ.ย. 2569", deadline: "4 ธ.ค. 2569", rush: false, date: "15/09/69", status: "กำลังทำ", seq: 2 }
             ],
             reviews: [
                 { id: 1, author: "เทส", time: "เมื่อสักครู่นี้", rating: 4, comment: "เทส", img: "" },
@@ -912,6 +1006,158 @@
             ],
             cart: []
         };
+
+        // ==================== ADMIN QUEUE FORM & LIST FUNCTIONS ====================
+        function formatThaiDateLabel(isoStr) {
+            if (!isoStr) return "เลือกวันที่";
+            const parts = isoStr.split("-");
+            if (parts.length !== 3) return isoStr;
+            const yearBE = parseInt(parts[0], 10) + 543;
+            const monthIdx = parseInt(parts[1], 10) - 1;
+            const dayNum = parseInt(parts[2], 10);
+            const thaiMonths = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+            const mText = thaiMonths[monthIdx] || parts[1];
+            return `${dayNum} ${mText} ${yearBE}`;
+        }
+
+        function triggerQueueDatePicker(kind) {
+            if (queueDateState[kind].unknown) return;
+            const picker = document.getElementById(`adm-queue-${kind}-picker`);
+            if (picker) {
+                if (typeof picker.showPicker === "function") {
+                    picker.showPicker();
+                } else {
+                    picker.click();
+                }
+            }
+        }
+
+        function handleQueueDateChange(kind, isoVal) {
+            if (!isoVal) return;
+            queueDateState[kind].iso = isoVal;
+            queueDateState[kind].label = formatThaiDateLabel(isoVal);
+            const btn = document.getElementById(`adm-queue-${kind}-btn`);
+            if (btn && !queueDateState[kind].unknown) {
+                btn.innerText = queueDateState[kind].label;
+            }
+        }
+
+        function toggleQueueDateUnknown(kind) {
+            const chk = document.getElementById(`adm-queue-${kind}-unknown`);
+            const btn = document.getElementById(`adm-queue-${kind}-btn`);
+            if (!chk || !btn) return;
+
+            queueDateState[kind].unknown = chk.checked;
+            if (chk.checked) {
+                btn.innerText = "ยังไม่ทราบกำหนด";
+                btn.classList.add("opacity-60");
+            } else {
+                btn.innerText = queueDateState[kind].label;
+                btn.classList.remove("opacity-60");
+            }
+        }
+
+        function saveAdminQueueJob() {
+            const name = document.getElementById('adm-queue-customer-name').value.trim();
+            const jobType = document.getElementById('adm-queue-job-type').value.trim();
+            const channel = document.getElementById('adm-queue-channel').value.trim() || "LINE";
+            const note = document.getElementById('adm-queue-note').value.trim();
+            const rush = document.getElementById('adm-queue-rush-toggle').checked;
+
+            if (!name || !jobType) {
+                alert("กรุณากรอก ชื่อลูกค้า และ ประเภทงาน ก่อนบันทึกคิวงานค่ะ");
+                return;
+            }
+
+            const startText = queueDateState.start.unknown ? "ยังไม่ทราบกำหนด" : queueDateState.start.label;
+            const deadlineText = queueDateState.deadline.unknown ? "ยังไม่ทราบกำหนด" : queueDateState.deadline.label;
+            const nextSeq = appState.queues.length > 0
+                ? Math.max(...appState.queues.map(q => q.seq || 0)) + 1
+                : 1;
+
+            appState.queues.push({
+                id: Date.now(),
+                name: name,
+                service: note ? `${jobType} (${note})` : jobType,
+                channel: channel,
+                note: note,
+                startDate: startText,
+                deadline: deadlineText,
+                rush: rush,
+                date: startText,
+                status: "ยังไม่ได้เริ่ม",
+                seq: nextSeq
+            });
+
+            document.getElementById('adm-queue-customer-name').value = "";
+            document.getElementById('adm-queue-job-type').value = "";
+            document.getElementById('adm-queue-channel').value = "";
+            document.getElementById('adm-queue-note').value = "";
+            document.getElementById('adm-queue-rush-toggle').checked = false;
+
+            renderAdminQueueList();
+            renderQueues();
+            alert("บันทึกคิวงานเรียบร้อยแล้วค่ะ!");
+        }
+
+        function updateAdminQueueStatus(queueId, newStatus) {
+            const target = appState.queues.find(q => q.id === queueId);
+            if (!target) return;
+            target.status = newStatus;
+            renderAdminQueueList();
+            renderQueues();
+        }
+
+        function deleteAdminQueue(queueId) {
+            if (!confirm("ต้องการลบคิวงานนี้ใช่ไหมคะ?")) return;
+            appState.queues = appState.queues.filter(q => q.id !== queueId);
+            renderAdminQueueList();
+            renderQueues();
+        }
+
+        function renderAdminQueueList() {
+            const listEl = document.getElementById('admin-queue-list');
+            const countEl = document.getElementById('adm-queue-total-count');
+            if (!listEl) return;
+
+            if (countEl) countEl.innerText = appState.queues.length;
+
+            if (appState.queues.length === 0) {
+                listEl.innerHTML = `<div class="text-center text-[#c0aab1] py-4">ยังไม่มีรายการคิวงาน</div>`;
+                return;
+            }
+
+            listEl.innerHTML = appState.queues.map(q => `
+                <div class="bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl p-3.5 space-y-2">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full bg-white border border-[#e3cdd1] text-[10px] font-extrabold text-[#a7898d]">Q${q.seq || ''}</span>
+                                <span class="font-bold text-xs text-[#7d6267]">${q.name}</span>
+                                ${q.rush ? `<span class="px-2 py-0.5 rounded-full bg-[#fceef1] text-[#a7898d] text-[10px] font-bold">🔥 คิวด่วน</span>` : ''}
+                            </div>
+                            <div class="text-xs font-semibold text-[#8c6b70] mt-1">${q.service}</div>
+                            <div class="text-[10px] text-[#b5979c] mt-0.5">
+                                ช่องทาง: ${q.channel || 'LINE'} · เริ่ม: ${q.startDate || '-'} · ส่ง: ${q.deadline || '-'}
+                            </div>
+                        </div>
+                        <button type="button" onclick="deleteAdminQueue(${q.id})" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#c87d8a] hover:bg-[#fceef1] flex items-center justify-center shrink-0 transition" title="ลบคิว">
+                            <i class="fa-solid fa-trash text-[10px]"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center space-x-1.5 pt-1">
+                        ${['ยังไม่ได้เริ่ม', 'กำลังทำ', 'เสร็จแล้ว'].map(st => {
+                            const active = q.status === st;
+                            const cls = active
+                                ? 'bg-[#a7898d] text-white font-bold shadow-2xs'
+                                : 'bg-white text-[#9c7d82] border border-[#f2e4e6]';
+                            return `<button type="button" onclick="updateAdminQueueStatus(${q.id}, '${st}')" class="flex-1 py-1.5 rounded-full text-[10px] transition ${cls}">${st}</button>`;
+                        }).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
 
         // ==================== ADMIN PRODUCT & CATEGORY FUNCTIONS ====================
         function updateProdDescCount() {
@@ -1012,7 +1258,6 @@
             const pillsEl = document.getElementById('admin-category-pills');
             if (!pillsEl) return;
 
-            // เอาสัญลักษณ์จุดหกจุดด้านหน้าออกแล้ว
             pillsEl.innerHTML = appState.categories.map(c => `
                 <div class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-[#fdfafb] border border-[#f2e4e6] text-xs font-semibold text-[#8c6b70]">
                     <span>${c.name}</span>
@@ -1060,7 +1305,6 @@
             updateProdDescCount();
         }
 
-        // เปิดป็อปอัพแก้ไขสินค้าเมื่อกดปุ่มดินสอ
         function openEditProductModal(prodId) {
             const prod = appState.products.find(p => p.id === prodId);
             if (!prod) return;
@@ -1498,6 +1742,7 @@
             populateAdminCategorySelect();
             renderAdminCategoryPills();
             renderAdminCloudProducts();
+            renderAdminQueueList();
         }
 
         function openBookingModal() { document.getElementById('booking-modal').classList.remove('hidden'); }
@@ -1571,6 +1816,11 @@
                 id: Date.now(),
                 name: name,
                 service: `${currentBookingService} (${document.getElementById('sign-style').value})`,
+                channel: "LINE",
+                note: "",
+                startDate: queueDateState.start.label,
+                deadline: queueDateState.deadline.label,
+                rush: false,
                 date: "11/09/69",
                 status: "ยังไม่ได้เริ่ม",
                 seq: newSeq
@@ -1708,6 +1958,8 @@
                     statusBadge = `<div class="px-5 py-2 bg-[#fdfafb] border border-[#f0e6e7] rounded-full text-[11px] font-bold text-gray-400 shadow-2xs">ยังไม่ได้เริ่ม</div>`;
                 }
 
+                const channelTag = (q.channel || 'LINE').toUpperCase();
+
                 return `
                     <div class="bg-white rounded-[24px] p-4.5 border-[1.5px] ${cardBorder} relative mt-6 transition-all">
                         <div class="absolute -top-3.5 left-5 w-8 h-8 rounded-full bg-white border-[1.5px] ${circleBorder} flex items-center justify-center text-[10px] font-extrabold ${circleText} z-10 shadow-2xs">
@@ -1716,9 +1968,10 @@
 
                         <div class="px-2 flex justify-between items-center">
                             <div class="space-y-1">
-                                <div class="flex items-center space-x-2.5">
+                                <div class="flex items-center space-x-2">
                                     <span class="font-extrabold text-sm ${nameText}">${q.name}</span>
-                                    <span class="px-2.5 py-0.5 bg-white border ${circleBorder} rounded-full text-[9px] font-extrabold ${nameText} tracking-wider">LINE</span>
+                                    <span class="px-2.5 py-0.5 bg-white border ${circleBorder} rounded-full text-[9px] font-extrabold ${nameText} tracking-wider">${channelTag}</span>
+                                    ${q.rush ? `<span class="px-2 py-0.5 bg-[#fceef1] rounded-full text-[9px] font-bold text-[#a7898d]">🔥 ด่วน</span>` : ''}
                                 </div>
                                 <p class="text-xs font-extrabold ${serviceText}">${q.service}</p>
                             </div>
@@ -1741,6 +1994,7 @@
                 populateAdminCategorySelect();
                 renderAdminCategoryPills();
                 renderAdminCloudProducts();
+                renderAdminQueueList();
             } else { alert("รหัสผ่านไม่ถูกต้อง"); }
         }
         function closeAdminFullPage() {
@@ -1758,6 +2012,7 @@
             document.querySelectorAll('.adm-content').forEach(c => c.classList.add('hidden'));
             document.getElementById(`adm-content-${subTabId}`).classList.remove('hidden');
             if (subTabId === 'stamp') renderAdminStampList();
+            if (subTabId === 'queue') renderAdminQueueList();
             if (subTabId === 'products') {
                 populateAdminCategorySelect();
                 renderAdminCategoryPills();
