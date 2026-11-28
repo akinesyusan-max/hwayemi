@@ -694,22 +694,8 @@
                     <div id="theme-color-fields" class="theme-color-grid"></div>
                 </details>
                 <details class="theme-section">
-                    <summary><i class="fa-regular fa-image"></i> รูปภาพทั่วไป (ไม่รวมรูปสินค้า)</summary>
-                    <p class="theme-help mt-3">รูปสินค้าเพิ่มและแก้ไขได้ในหมวดหมู่ “สินค้า” เท่านั้น</p>
+                    <summary><i class="fa-regular fa-image"></i> รูปภาพทุกส่วน</summary>
                     <div id="theme-image-fields" class="theme-image-list"></div>
-                </details>
-                <details class="theme-section" open>
-                    <summary><i class="fa-solid fa-wand-magic-sparkles"></i> เอฟเฟกต์ตอนกดหน้าจอ</summary>
-                    <div class="theme-effect-fields">
-                        <p class="theme-help">กดค้างตรงไหนก็ได้เพื่อให้เอฟเฟกต์เด้งช้า ๆ เมื่อปล่อย เอฟเฟกต์จะเลื่อนออกอย่างนุ่มนวล</p>
-                        <label class="theme-field"><span>เลือกรูปแบบเอฟเฟกต์</span><select id="adm-press-type"><option value="emoji">อิโมจิ</option><option value="image">รูปภาพ</option></select></label>
-                        <label class="theme-field" id="adm-press-emoji-field"><span>อิโมจิที่ต้องการ เช่น ♡ ♥ ⭐ ✨</span><input id="adm-press-emoji" type="text" value="♡" autocomplete="off"></label>
-                        <div id="adm-press-image-fields" class="theme-effect-fields" hidden>
-                            <label class="theme-field"><span>อัปโหลดรูปสำหรับเอฟเฟกต์</span><input id="adm-press-image-file" type="file" accept="image/*"></label>
-                            <label class="theme-field"><span>หรือใส่ลิงก์รูปสำหรับเอฟเฟกต์</span><input id="adm-press-image-url" type="url" placeholder="https://…"></label>
-                        </div>
-                        <div class="theme-effect-preview" aria-label="ตัวอย่างเอฟเฟกต์"><span>ตัวอย่าง</span><span id="adm-press-preview-emoji">♡</span><img id="adm-press-preview-image" alt="ตัวอย่างรูปเอฟเฟกต์" hidden></div>
-                    </div>
                 </details>
                 <details class="theme-section" open>
                     <summary><i class="fa-solid fa-music"></i> เพลง</summary>
@@ -2089,37 +2075,6 @@
  function net(){var n=document.getElementById('net-btn');n.style.opacity=navigator.onLine?'1':'0.35';}
  addEventListener('online',net);addEventListener('offline',net);net();
  if(navigator.getBattery){navigator.getBattery().then(function(b){function u(){var l=Math.round(b.level*100);var c=l>87?'full':l>62?'three-quarters':l>37?'half':l>12?'quarter':'empty';document.getElementById('bat-icon').className='fa-solid '+(b.charging?'fa-bolt':'fa-battery-'+c)+' text-sm';document.getElementById('bat-text').textContent=l+'%';}u();b.addEventListener('levelchange',u);b.addEventListener('chargingchange',u);});}
-})();
-</script>
-<script>
-/* ปุ่มกดแล้วมีหัวใจลอยขึ้้น */
-(function(){
- var GLYPHS=['♡','♥','❤'];
- function spawn(x,y){
-  var h=document.createElement('span');
-  h.className='heart-pop';
-  h.textContent=GLYPHS[Math.floor(Math.random()*GLYPHS.length)];
-  h.style.left=x+'px';
-  h.style.top=y+'px';
-  h.style.fontSize=(14+Math.random()*10).toFixed(0)+'px';
-  h.style.setProperty('--heart-drift',(Math.random()*38-19).toFixed(1)+'px');
-  h.style.setProperty('--heart-tilt',(Math.random()*44-22).toFixed(1)+'deg');
-  document.body.appendChild(h);
-  setTimeout(function(){h.remove();},820);
- }
- function reduced(){return window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
- document.addEventListener('pointerdown',function(e){
-  if(reduced())return;
-  var t=e.target&&e.target.closest?e.target.closest('button,.tama-btn-hit,.tama-screen-btn,.nav-btn,[role="button"]'):null;
-  if(!t||t.disabled)return;
-  var r=t.getBoundingClientRect();
-  var x=(typeof e.clientX==='number'&&e.clientX)?e.clientX:r.left+r.width/2;
-  var y=(typeof e.clientY==='number'&&e.clientY)?e.clientY:r.top+r.height/2;
-  var n=2+Math.floor(Math.random()*2);
-  for(var i=0;i<n;i++){
-   (function(dx,dy,delay){setTimeout(function(){spawn(x+dx,y+dy);},delay);})(Math.random()*18-9,Math.random()*12-6,i*70);
-  }
- },true);
 })();
 </script>
 </body>
