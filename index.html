@@ -74,14 +74,13 @@
                 <button onclick="openAdminLoginModal()" class="w-8 h-8 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-[#a7898d] hover:bg-[#f5e8ea] transition shadow-2xs" title="เข้าสู่ระบบแอดมิน">
                     <i class="fa-solid fa-chess-rook text-sm"></i>
                 </button>
-                <span id="shop-title-header" class="text-[#a7898d] font-extrabold text-lg">ชื่อร้าน</span>
+                <div class="inline-flex items-center space-x-1.5 text-[#a7898d] font-extrabold text-sm tracking-wide">
+                    <span id="realtime-clock-text">00:00:00</span>
+                    <i class="fa-regular fa-clock text-xs text-[#b5979c]"></i>
+                </div>
             </div>
             
             <div class="flex items-center space-x-3">
-                <button onclick="openCartModal()" class="relative w-9 h-9 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-[#a7898d] hover:bg-[#f5e8ea] transition shadow-2xs" title="ตะกร้าสินค้า">
-                    <i class="fa-solid fa-basket-shopping text-sm"></i>
-                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-[#a7898d] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-xs">0</span>
-                </button>
                 <div class="flex flex-col space-y-1 w-6 opacity-30 cursor-default">
                     <span class="h-0.5 bg-gray-600 rounded-full w-full"></span>
                     <span class="h-0.5 bg-gray-600 rounded-full w-4 ml-auto"></span>
@@ -278,18 +277,15 @@
 
             <!-- TAB 5: MEMBER (COLLECTING POINT) -->
             <section id="view-member" class="view-section hidden space-y-4 pt-3">
-                <div class="space-y-1 px-1">
+                <div class="px-1">
                     <h2 class="text-2xl font-extrabold text-[#a7898d] tracking-tight">Collecting Point</h2>
-                    <p id="stamp-helper-text" class="text-xs text-[#9c7d82]">
-                        กรอกชื่อ <button type="button" onclick="fillDemoStampName('mimi')" class="underline font-semibold text-[#a7898d] hover:text-[#8c6b70]">mimi</button> เพื่อดูตัวอย่างสะสมแต้มนะคะ
-                    </p>
                 </div>
 
                 <div class="bg-white rounded-[26px] p-5 border border-[#f2e4e6] shadow-2xs space-y-4">
                     <div class="flex items-center justify-between">
-                        <span id="stamp-progress-label" class="text-sm font-bold text-[#a7898d]">0 of 10 stamps</span>
+                        <span id="stamp-progress-label" class="text-sm font-bold text-[#a7898d]">0 / 10 stamps</span>
                         <span id="stamp-card-owner-badge" class="text-[11px] font-semibold text-[#b5979c] bg-[#fdfafb] border border-[#f2e4e6] px-3 py-0.5 rounded-full">
-                            ตัวอย่าง: mimi
+                            บัตรของ: mimi
                         </span>
                     </div>
 
@@ -377,19 +373,19 @@
                     <i class="fa-solid fa-image text-[#a7898d] text-base mb-0.5"></i>
                     <span>ทำป้าย</span>
                 </button>
-                <button onclick="selectService('Commission')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                <button onclick="openQuickBookingModal('Commission')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
                     <i class="fa-solid fa-paintbrush text-[#a7898d] text-base mb-0.5"></i>
                     <span>Commission</span>
                 </button>
-                <button onclick="selectService('เว็บไซต์')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                <button onclick="openQuickBookingModal('เว็บไซต์')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
                     <i class="fa-solid fa-globe text-[#a7898d] text-base mb-0.5"></i>
                     <span>เว็บไซต์</span>
                 </button>
-                <button onclick="selectService('ทำดิส')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                <button onclick="openQuickBookingModal('ทำดิส')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
                     <i class="fa-solid fa-circle-user text-[#a7898d] text-base mb-0.5"></i>
                     <span>ทำดิส</span>
                 </button>
-                <button onclick="selectService('แต่งฟอร์ม')" class="col-span-2 p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                <button onclick="openQuickBookingModal('แต่งฟอร์ม')" class="col-span-2 p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
                     <i class="fa-solid fa-file-pen text-[#a7898d] text-base mb-0.5"></i>
                     <span>แต่งฟอร์ม</span>
                 </button>
@@ -415,7 +411,16 @@
                     <div class="w-24 h-24 rounded-[20px] overflow-hidden shrink-0 border border-[#f0e6e7] shadow-2xs"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover"></div>
                     <div class="w-24 h-24 rounded-[20px] overflow-hidden shrink-0 border border-[#f0e6e7] shadow-2xs"><img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover"></div>
                 </div>
-                <button class="w-full py-2.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-xs shadow-2xs transition mt-1">ตัวอย่างเพิ่มเติม</button>
+            </div>
+
+            <div>
+                <label class="font-bold text-gray-700 mb-1 block">ชื่อที่ใช้จอง</label>
+                <input type="text" id="sign-customer-name" placeholder="ระบุชื่อของคุณ" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
+            </div>
+
+            <div>
+                <label class="font-bold text-gray-700 mb-1 block">ช่องทางติดต่อ (LINE / IG / FB)</label>
+                <input type="text" id="sign-customer-line" placeholder="@lineid" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
             </div>
 
             <div class="grid grid-cols-2 gap-3">
@@ -475,89 +480,37 @@
                 <input type="text" id="sign-extra" placeholder="ระบุเพิ่มเติม (ถ้ามี)" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
             </div>
 
-            <div class="flex justify-between items-center pt-2 px-1">
-                <span class="font-bold text-gray-700 text-sm">รวมยอด</span>
-                <div class="flex items-center space-x-1">
-                    <span id="sign-total-price" class="font-extrabold text-[#a7898d] text-base">89</span>
-                    <span class="font-extrabold text-[#a7898d] text-sm">฿</span>
-                </div>
-            </div>
-
-            <button onclick="proceedToPayment()" class="w-full py-3.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-sm shadow-md transition">ถัดไป</button>
+            <button onclick="submitSignBooking()" class="w-full py-3.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-sm shadow-md transition">ยืนยันการจองคิว</button>
         </div>
     </div>
 
-    <!-- ==================== EXACT MATCH PAYMENT MODAL ==================== -->
-    <div id="payment-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <!-- ==================== QUICK BOOKING MODAL (NO PAYMENT) ==================== -->
+    <div id="quick-booking-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-[32px] max-w-sm w-full p-6 relative shadow-2xl border border-[#f7eff0] space-y-4 text-xs max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center pb-1">
+            <div class="flex justify-between items-center pb-1 border-b border-[#f7eff0]">
                 <div class="flex items-center space-x-2 text-gray-800 font-bold text-sm">
-                    <i class="fa-regular fa-image text-gray-500 text-base"></i>
-                    <span>รายละเอียดการจอง: ทำป้าย</span>
+                    <i class="fa-solid fa-calendar-check text-[#a7898d] text-base"></i>
+                    <span>จองคิว: <span id="quick-booking-service-title">บริการ</span></span>
                 </div>
-                <button onclick="closePaymentModal()" class="w-7 h-7 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-gray-500 hover:bg-[#f5e8ea] transition"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeQuickBookingModal()" class="w-7 h-7 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-gray-500 hover:bg-[#f5e8ea] transition"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
             <div>
                 <label class="font-bold text-gray-700 mb-1 block">ชื่อที่ใช้จอง</label>
-                <input type="text" id="pay-name" placeholder="ระบุชื่อของคุณ" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="font-bold text-gray-700 mb-1 block">email</label>
-                    <input type="email" id="pay-email" placeholder="example@email.com" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
-                </div>
-                <div>
-                    <label class="font-bold text-gray-700 mb-1 block">id / link line</label>
-                    <input type="text" id="pay-line" placeholder="@lineid" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
-                </div>
-            </div>
-
-            <div class="bg-[#fdfafb] border border-[#f0e6e7] p-3.5 rounded-2xl space-y-2">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-gray-700">ยอดรวม :</span>
-                    <span id="pay-total-display" class="font-extrabold text-[#a7898d] text-sm">000 บาท</span>
-                </div>
-                <div class="text-[11px] font-bold text-gray-600">
-                    Kbank : Thipkamon D.
-                </div>
+                <input type="text" id="quick-book-name" placeholder="ระบุชื่อของคุณ" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
             </div>
 
             <div>
-                <label class="font-bold text-gray-700 mb-1 block">โน้ตสลิป</label>
-                <input type="text" id="pay-note" placeholder="โน้ตสลิป (เช่น ค่าทำป้าย 89 บาท)" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
-            </div>
-
-            <div class="flex flex-col items-center justify-center space-y-1">
-                <div id="qr-code-box" class="w-32 h-32 rounded-[20px] bg-[#fdfafb] border border-[#f0e6e7] overflow-hidden flex items-center justify-center shadow-2xs relative">
-                    <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ThipkamonKBANK" class="w-full h-full object-cover">
-                </div>
-                <span class="text-[9px] text-gray-400">สแกนเพื่อชำระเงิน</span>
+                <label class="font-bold text-gray-700 mb-1 block">ช่องทางติดต่อ (LINE / IG / FB)</label>
+                <input type="text" id="quick-book-channel" placeholder="@lineid" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
             </div>
 
             <div>
-                <label class="font-bold text-gray-700 mb-1 block">แนบสลิปโอนเงิน</label>
-                <input type="file" id="slip-file-input" accept="image/*" class="w-full px-3.5 py-2 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-500 file:mr-3 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-[#fceef1] file:text-[#a7898d]">
+                <label class="font-bold text-gray-700 mb-1 block">รายละเอียดงาน</label>
+                <textarea id="quick-book-note" rows="3" placeholder="ระบุรายละเอียดที่ต้องการสั่งทำ..." class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none resize-none"></textarea>
             </div>
 
-            <button onclick="submitBookingAndFinish()" class="w-full py-3.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-sm shadow-md transition">Sent</button>
-        </div>
-    </div>
-
-    <!-- ==================== CART MODAL ==================== -->
-    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-[32px] max-w-sm w-full p-5 relative shadow-2xl border border-[#f7eff0] space-y-4 max-h-[80vh] overflow-y-auto text-xs">
-            <div class="flex justify-between items-center border-b border-[#f7eff0] pb-2">
-                <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-basket-shopping text-[#a7898d]"></i> ตะกร้าสินค้า</h3>
-                <button onclick="closeCartModal()" class="w-6 h-6 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-gray-500"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="cart-items-container" class="space-y-2"></div>
-            <div class="border-t border-[#f7eff0] pt-3 flex justify-between items-center font-bold text-sm">
-                <span>ยอดรวม:</span>
-                <span id="cart-total-price" class="text-[#a7898d]">฿0</span>
-            </div>
-            <button onclick="checkoutCart()" class="w-full py-2.5 bg-[#a7898d] text-white rounded-full font-bold shadow-sm">ชำระเงิน</button>
+            <button onclick="submitQuickBooking()" class="w-full py-3.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-sm shadow-md transition">ยืนยันการจองคิว</button>
         </div>
     </div>
 
@@ -566,7 +519,7 @@
         <div class="bg-white rounded-[32px] max-w-xs w-full p-5 relative shadow-2xl border border-[#f7eff0] space-y-4 text-xs">
             <div class="flex justify-between items-center border-b border-[#f7eff0] pb-2">
                 <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-paw text-[#a7898d]"></i> ตัวกรองสินค้า</h3>
-                <button onclick="closeCatFilterModal()" class="w-6 h-6 rounded-full bg-[#fdfafb] border border-[#f7eff0] flex items-center justify-center text-gray-500"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeCatFilterModal()" class="w-6 h-6 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-gray-500"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-2">
                 <p class="font-bold text-gray-700">ประเภท</p>
@@ -577,6 +530,59 @@
                 </div>
             </div>
             <button onclick="applyCatFilter()" class="w-full py-2.5 bg-[#a7898d] text-white rounded-full font-bold shadow-sm">ยืนยัน</button>
+        </div>
+    </div>
+
+    <!-- ==================== EDIT QUEUE POPUP MODAL (ADMIN) ==================== -->
+    <div id="edit-queue-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-[32px] max-w-sm w-full p-5 relative shadow-2xl border border-[#f2e4e6] space-y-3 text-xs max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-[#f7eff0] pb-2.5">
+                <div class="flex items-center space-x-2 text-sm font-bold text-[#8c6b70]">
+                    <i class="fa-solid fa-pen-to-square text-[#a7898d]"></i>
+                    <span>แก้ไขข้อมูลคิว (<span id="edit-queue-seq-label">Q1</span>)</span>
+                </div>
+                <button type="button" onclick="closeEditQueueModal()" class="w-7 h-7 rounded-full bg-[#fdfafb] border border-[#f2e4e6] flex items-center justify-center text-[#a7898d] hover:bg-[#fceef1] transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">ชื่อลูกค้า</label>
+                <input type="text" id="edit-queue-name" placeholder="ชื่อลูกค้า"
+                       class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">ประเภทงาน</label>
+                <input type="text" id="edit-queue-job-type" placeholder="ประเภทงาน"
+                       class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">ช่องทาง</label>
+                <input type="text" id="edit-queue-channel" placeholder="ช่องทาง"
+                       class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">รายละเอียดเพิ่มเติม (ถ้ามี)...</label>
+                <textarea id="edit-queue-note" rows="2" placeholder="รายละเอียดเพิ่มเติม (ถ้ามี)..."
+                          class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] resize-none"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#8c6b70] mb-1">สถานะคิว</label>
+                <select id="edit-queue-status" class="w-full px-4 py-2.5 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d]">
+                    <option value="ยังไม่ได้เริ่ม">ยังไม่ได้เริ่ม</option>
+                    <option value="กำลังทำ">กำลังทำ</option>
+                    <option value="เสร็จแล้ว">เสร็จแล้ว</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5 pt-2">
+                <button type="button" onclick="closeEditQueueModal()" class="py-2.5 bg-[#fdfafb] hover:bg-[#f7eff0] text-[#9c7d82] border border-[#f2e4e6] rounded-full font-bold text-xs transition">ยกเลิก</button>
+                <button type="button" onclick="saveEditedQueueFromModal()" class="py-2.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-xs shadow-2xs transition">บันทึกการแก้ไข</button>
+            </div>
         </div>
     </div>
 
@@ -666,9 +672,8 @@
             <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-none text-xs">
                 <button onclick="switchAdminSubTab('shop')" id="adm-tab-shop" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">ร้าน/ธีม</button>
                 <button onclick="switchAdminSubTab('products')" id="adm-tab-products" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">สินค้า</button>
-                <button onclick="switchAdminSubTab('queue')" id="adm-tab-queue" class="adm-tab px-4 py-2 rounded-full font-bold bg-[#a7898d] text-white shrink-0 shadow-2xs">คิว</button>
-                <button onclick="switchAdminSubTab('stamp')" id="adm-tab-stamp" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">สะสมแต้ม</button>
-                <button onclick="switchAdminSubTab('qr')" id="adm-tab-qr" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">QR Code</button>
+                <button onclick="switchAdminSubTab('queue')" id="adm-tab-queue" class="adm-tab px-4 py-2 rounded-full font-medium bg-white text-[#9c7d82] border border-[#f2e4e6] shrink-0">คิว</button>
+                <button onclick="switchAdminSubTab('stamp')" id="adm-tab-stamp" class="adm-tab px-4 py-2 rounded-full font-bold bg-[#a7898d] text-white shrink-0 shadow-2xs">สะสมแต้ม</button>
             </div>
         </div>
 
@@ -798,107 +803,50 @@
                 </div>
             </div>
 
-            <!-- ADMIN QUEUE TAB (MATCHING REFERENCE IMAGE IN SHOP THEME) -->
-            <div id="adm-content-queue" class="adm-content space-y-4 text-xs">
+            <!-- ADMIN QUEUE TAB -->
+            <div id="adm-content-queue" class="adm-content space-y-4 text-xs hidden">
                 <div class="bg-white rounded-[30px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3.5">
-                    <!-- แถวบนสุด: สวิตช์ คิวด่วน -->
-                    <div class="flex items-center justify-end space-x-2.5 pb-0.5">
-                        <span class="text-xs font-extrabold text-[#7d6267]">คิวด่วน</span>
-                        <span class="text-sm">🔥</span>
-                        <label class="relative inline-flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="adm-queue-rush-toggle" class="sr-only peer">
-                            <div class="w-11 h-6 bg-[#ead9dc] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all peer-checked:bg-[#a7898d] shadow-inner"></div>
-                        </label>
-                    </div>
-
-                    <!-- ชื่อลูกค้า -->
                     <div>
                         <input type="text" id="adm-queue-customer-name" placeholder="ชื่อลูกค้า"
                                class="w-full px-4 py-3 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] placeholder-[#b9a0a5]">
                     </div>
 
-                    <!-- ประเภทงาน -->
                     <div>
                         <input type="text" id="adm-queue-job-type" placeholder="ประเภทงาน"
                                class="w-full px-4 py-3 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] placeholder-[#b9a0a5]">
                     </div>
 
-                    <!-- ช่องทาง -->
                     <div>
                         <input type="text" id="adm-queue-channel" placeholder="ช่องทาง"
                                class="w-full px-4 py-3 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] placeholder-[#b9a0a5]">
                     </div>
 
-                    <!-- รายละเอียดเพิ่มเติม (ถ้ามี)... -->
                     <div>
                         <textarea id="adm-queue-note" rows="3" placeholder="รายละเอียดเพิ่มเติม (ถ้ามี)..."
                                   class="w-full px-4 py-3 bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-[#a7898d] placeholder-[#b9a0a5] resize-none"></textarea>
                     </div>
 
-                    <!-- START DATE -->
-                    <div class="bg-[#fdfafb] border border-[#e3cdd1] rounded-2xl px-3.5 py-2.5 flex items-center justify-between gap-2">
-                        <div class="space-y-1.5 min-w-0">
-                            <div class="flex items-center space-x-2 text-[11px] font-extrabold text-[#9b7c81] tracking-wide">
-                                <i class="fa-regular fa-calendar text-xs text-[#a7898d]"></i>
-                                <span>START DATE</span>
-                            </div>
-                            <label class="flex items-center space-x-2 cursor-pointer select-none text-xs font-medium text-[#7d6267]">
-                                <input type="checkbox" id="adm-queue-start-unknown" onchange="toggleQueueDateUnknown('start')"
-                                       class="w-4 h-4 rounded-full accent-[#a7898d] border border-[#d6bcc0]">
-                                <span>ยังไม่ทราบกำหนด</span>
-                            </label>
-                        </div>
-
-                        <div class="relative shrink-0">
-                            <button type="button" id="adm-queue-start-btn" onclick="triggerQueueDatePicker('start')"
-                                    class="px-4 py-2.5 bg-white border border-[#f2e4e6] rounded-xl text-xs font-bold text-[#7d6267] hover:bg-[#fceef1] transition shadow-2xs">
-                                24 พ.ย. 2569
-                            </button>
-                            <input type="date" id="adm-queue-start-picker" value="2026-11-24" onchange="handleQueueDateChange('start', this.value)"
-                                   class="sr-only">
-                        </div>
-                    </div>
-
-                    <!-- DEADLINE -->
-                    <div class="bg-[#fdfafb] border border-[#e3cdd1] rounded-2xl px-3.5 py-2.5 flex items-center justify-between gap-2">
-                        <div class="space-y-1.5 min-w-0">
-                            <div class="flex items-center space-x-2 text-[11px] font-extrabold text-[#9b7c81] tracking-wide">
-                                <i class="fa-regular fa-calendar text-xs text-[#a7898d]"></i>
-                                <span>DEADLINE</span>
-                            </div>
-                            <label class="flex items-center space-x-2 cursor-pointer select-none text-xs font-medium text-[#7d6267]">
-                                <input type="checkbox" id="adm-queue-deadline-unknown" onchange="toggleQueueDateUnknown('deadline')"
-                                       class="w-4 h-4 rounded-full accent-[#a7898d] border border-[#d6bcc0]">
-                                <span>ยังไม่ทราบกำหนด</span>
-                            </label>
-                        </div>
-
-                        <div class="relative shrink-0">
-                            <button type="button" id="adm-queue-deadline-btn" onclick="triggerQueueDatePicker('deadline')"
-                                    class="px-4 py-2.5 bg-white border border-[#f2e4e6] rounded-xl text-xs font-bold text-[#7d6267] hover:bg-[#fceef1] transition shadow-2xs">
-                                4 ธ.ค. 2569
-                            </button>
-                            <input type="date" id="adm-queue-deadline-picker" value="2026-12-04" onchange="handleQueueDateChange('deadline', this.value)"
-                                   class="sr-only">
-                        </div>
-                    </div>
-
-                    <!-- ปุ่มบันทึกคิวงาน -->
                     <button type="button" onclick="saveAdminQueueJob()"
                             class="w-full py-3.5 bg-[#a7898d] hover:bg-[#927377] active:scale-[0.99] text-white rounded-2xl font-bold text-sm shadow-sm transition">
                         บันทึกคิวงาน
                     </button>
                 </div>
 
-                <!-- รายการคิวในระบบหลังบ้าน -->
                 <div class="bg-white rounded-[28px] p-5 border border-[#f2e4e6] shadow-2xs space-y-3">
                     <div class="font-bold text-sm text-[#8c6b70]">รายการคิวทั้งหมด (<span id="adm-queue-total-count">0</span>)</div>
-                    <div id="admin-queue-list" class="space-y-2.5"></div>
+
+                    <div class="relative flex items-center bg-[#fdfafb] border border-[#f2e4e6] rounded-full px-4 py-2.5">
+                        <i class="fa-solid fa-magnifying-glass text-[#c0aab1] text-xs mr-2.5"></i>
+                        <input type="text" id="adm-queue-search-input" oninput="renderAdminQueueList()" placeholder="ค้นหาคิวงาน ชื่อลูกค้า หรือประเภทงาน..."
+                               class="w-full text-xs text-gray-700 focus:outline-none bg-transparent placeholder-[#c0aab1]">
+                    </div>
+
+                    <div id="admin-queue-list" class="space-y-2.5 pt-1"></div>
                 </div>
             </div>
 
             <!-- ADMIN STAMP TAB -->
-            <div id="adm-content-stamp" class="adm-content space-y-4 text-xs bg-white p-5 rounded-[28px] shadow-2xs border border-[#f2e4e6] hidden">
+            <div id="adm-content-stamp" class="adm-content space-y-4 text-xs bg-white p-5 rounded-[28px] shadow-2xs border border-[#f2e4e6]">
                 <h3 class="font-bold text-sm text-[#8c6b70]"><i class="fa-solid fa-stamp text-[#a7898d] mr-2"></i>ตั้งค่ารูปแสตมป์ & แต้มสะสมลูกค้า</h3>
 
                 <div class="bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl p-4 space-y-3">
@@ -932,16 +880,6 @@
                     <div id="admin-stamp-customers-list" class="space-y-2"></div>
                 </div>
             </div>
-
-            <!-- ADMIN QR TAB -->
-            <div id="adm-content-qr" class="adm-content space-y-4 text-xs bg-white p-5 rounded-[28px] shadow-2xs border border-[#f2e4e6] hidden">
-                <h3 class="font-bold text-sm text-[#8c6b70]"><i class="fa-solid fa-qrcode text-[#a7898d] mr-2"></i>อัปโหลด QR Code ชำระเงิน</h3>
-                <div class="space-y-2">
-                    <label class="font-bold text-[#8c6b70]">เลือกรูป QR Code ใหม่</label>
-                    <input type="file" id="admin-qr-file-input" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#fceef1] file:text-[#a7898d]">
-                </div>
-                <button onclick="saveAdminQRCode()" class="w-full py-3 bg-[#a7898d] text-white rounded-full font-bold text-sm shadow-sm">บันทึก QR Code</button>
-            </div>
         </main>
     </div>
 
@@ -960,14 +898,11 @@
     <!-- JavaScript Logic -->
     <script>
         let currentTab = 'home';
-        let currentUser = null;
         let activeCategoryFilter = 'All';
         let currentQueueFilter = 'ทั้งหมด';
         let currentBookingService = '';
         let signQty = 1;
-        const pricePerSign = 89;
         let uploadedBlockImages = [];
-        let globalQRCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ThipkamonKBANK";
 
         let selectedReviewRating = 4;
         let uploadedReviewImage = "";
@@ -976,11 +911,7 @@
         let activeStampName = "mimi";
 
         let editingProductId = null;
-
-        let queueDateState = {
-            start: { iso: "2026-11-24", label: "24 พ.ย. 2569", unknown: false },
-            deadline: { iso: "2026-12-04", label: "4 ธ.ค. 2569", unknown: false }
-        };
+        let editingQueueId = null;
 
         let appState = {
             shopName: "ชื่อร้าน",
@@ -994,8 +925,8 @@
                 { id: 2, name: "ชื่อกลุ่ม", price: 50, desc: "", sampleUrl: "", tag: "", category: 'All', featured: true, img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=500" }
             ],
             queues: [
-                { id: 101, name: "k'sobell", service: "ปกกลุ่มแนวเจ้าหญิง", channel: "LINE", note: "", startDate: "24 พ.ย. 2569", deadline: "4 ธ.ค. 2569", rush: false, date: "11/09/69", status: "เสร็จแล้ว", seq: 1 },
-                { id: 102, name: "ไม่ทราบ", service: "Sign", channel: "LINE", note: "", startDate: "24 พ.ย. 2569", deadline: "4 ธ.ค. 2569", rush: false, date: "15/09/69", status: "กำลังทำ", seq: 2 }
+                { id: 101, name: "k'sobell", jobType: "ปกกลุ่มแนวเจ้าหญิง", service: "ปกกลุ่มแนวเจ้าหญิง", channel: "LINE", note: "", date: "11/09/69", status: "เสร็จแล้ว", seq: 1 },
+                { id: 102, name: "ไม่ทราบ", jobType: "Sign", service: "Sign", channel: "LINE", note: "", date: "15/09/69", status: "กำลังทำ", seq: 2 }
             ],
             reviews: [
                 { id: 1, author: "เทส", time: "เมื่อสักครู่นี้", rating: 4, comment: "เทส", img: "" },
@@ -1003,74 +934,32 @@
             ],
             stampCards: [
                 { name: "mimi", stamps: 0 }
-            ],
-            cart: []
+            ]
         };
 
-        // ==================== ADMIN QUEUE FORM & LIST FUNCTIONS ====================
-        function formatThaiDateLabel(isoStr) {
-            if (!isoStr) return "เลือกวันที่";
-            const parts = isoStr.split("-");
-            if (parts.length !== 3) return isoStr;
-            const yearBE = parseInt(parts[0], 10) + 543;
-            const monthIdx = parseInt(parts[1], 10) - 1;
-            const dayNum = parseInt(parts[2], 10);
-            const thaiMonths = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
-            const mText = thaiMonths[monthIdx] || parts[1];
-            return `${dayNum} ${mText} ${yearBE}`;
+        // ==================== REALTIME CLOCK FUNCTION ====================
+        function updateRealtimeClock() {
+            const clockEl = document.getElementById('realtime-clock-text');
+            if (!clockEl) return;
+            const now = new Date();
+            const hh = String(now.getHours()).padStart(2, '0');
+            const mm = String(now.getMinutes()).padStart(2, '0');
+            const ss = String(now.getSeconds()).padStart(2, '0');
+            clockEl.textContent = `${hh}:${mm}:${ss}`;
         }
 
-        function triggerQueueDatePicker(kind) {
-            if (queueDateState[kind].unknown) return;
-            const picker = document.getElementById(`adm-queue-${kind}-picker`);
-            if (picker) {
-                if (typeof picker.showPicker === "function") {
-                    picker.showPicker();
-                } else {
-                    picker.click();
-                }
-            }
-        }
-
-        function handleQueueDateChange(kind, isoVal) {
-            if (!isoVal) return;
-            queueDateState[kind].iso = isoVal;
-            queueDateState[kind].label = formatThaiDateLabel(isoVal);
-            const btn = document.getElementById(`adm-queue-${kind}-btn`);
-            if (btn && !queueDateState[kind].unknown) {
-                btn.innerText = queueDateState[kind].label;
-            }
-        }
-
-        function toggleQueueDateUnknown(kind) {
-            const chk = document.getElementById(`adm-queue-${kind}-unknown`);
-            const btn = document.getElementById(`adm-queue-${kind}-btn`);
-            if (!chk || !btn) return;
-
-            queueDateState[kind].unknown = chk.checked;
-            if (chk.checked) {
-                btn.innerText = "ยังไม่ทราบกำหนด";
-                btn.classList.add("opacity-60");
-            } else {
-                btn.innerText = queueDateState[kind].label;
-                btn.classList.remove("opacity-60");
-            }
-        }
-
+        // ==================== ADMIN QUEUE FORM, SEARCH & EDIT FUNCTIONS ====================
         function saveAdminQueueJob() {
             const name = document.getElementById('adm-queue-customer-name').value.trim();
             const jobType = document.getElementById('adm-queue-job-type').value.trim();
             const channel = document.getElementById('adm-queue-channel').value.trim() || "LINE";
             const note = document.getElementById('adm-queue-note').value.trim();
-            const rush = document.getElementById('adm-queue-rush-toggle').checked;
 
             if (!name || !jobType) {
                 alert("กรุณากรอก ชื่อลูกค้า และ ประเภทงาน ก่อนบันทึกคิวงานค่ะ");
                 return;
             }
 
-            const startText = queueDateState.start.unknown ? "ยังไม่ทราบกำหนด" : queueDateState.start.label;
-            const deadlineText = queueDateState.deadline.unknown ? "ยังไม่ทราบกำหนด" : queueDateState.deadline.label;
             const nextSeq = appState.queues.length > 0
                 ? Math.max(...appState.queues.map(q => q.seq || 0)) + 1
                 : 1;
@@ -1078,13 +967,11 @@
             appState.queues.push({
                 id: Date.now(),
                 name: name,
+                jobType: jobType,
                 service: note ? `${jobType} (${note})` : jobType,
                 channel: channel,
                 note: note,
-                startDate: startText,
-                deadline: deadlineText,
-                rush: rush,
-                date: startText,
+                date: "11/09/69",
                 status: "ยังไม่ได้เริ่ม",
                 seq: nextSeq
             });
@@ -1093,11 +980,70 @@
             document.getElementById('adm-queue-job-type').value = "";
             document.getElementById('adm-queue-channel').value = "";
             document.getElementById('adm-queue-note').value = "";
-            document.getElementById('adm-queue-rush-toggle').checked = false;
 
             renderAdminQueueList();
             renderQueues();
             alert("บันทึกคิวงานเรียบร้อยแล้วค่ะ!");
+        }
+
+        function openEditQueueModal(queueId) {
+            const q = appState.queues.find(item => item.id === queueId);
+            if (!q) return;
+
+            editingQueueId = q.id;
+            const baseJobType = q.jobType || (q.service ? q.service.replace(/\s*\([^)]*\)\s*$/, '') : '');
+            let extractedNote = q.note || '';
+            if (!extractedNote && q.service) {
+                const match = q.service.match(/\(([^)]+)\)\s*$/);
+                if (match) extractedNote = match[1];
+            }
+
+            document.getElementById('edit-queue-seq-label').innerText = `Q${q.seq || ''}`;
+            document.getElementById('edit-queue-name').value = q.name || "";
+            document.getElementById('edit-queue-job-type').value = baseJobType;
+            document.getElementById('edit-queue-channel').value = q.channel || "LINE";
+            document.getElementById('edit-queue-note').value = extractedNote;
+            document.getElementById('edit-queue-status').value = q.status || "ยังไม่ได้เริ่ม";
+
+            document.getElementById('edit-queue-modal').classList.remove('hidden');
+        }
+
+        function closeEditQueueModal() {
+            editingQueueId = null;
+            document.getElementById('edit-queue-modal').classList.add('hidden');
+        }
+
+        function saveEditedQueueFromModal() {
+            if (editingQueueId === null) return;
+
+            const name = document.getElementById('edit-queue-name').value.trim();
+            const jobType = document.getElementById('edit-queue-job-type').value.trim();
+            const channel = document.getElementById('edit-queue-channel').value.trim() || "LINE";
+            const note = document.getElementById('edit-queue-note').value.trim();
+            const status = document.getElementById('edit-queue-status').value || "ยังไม่ได้เริ่ม";
+
+            if (!name || !jobType) {
+                alert("กรุณากรอก ชื่อลูกค้า และ ประเภทงาน ก่อนบันทึกการแก้ไขค่ะ");
+                return;
+            }
+
+            const idx = appState.queues.findIndex(item => item.id === editingQueueId);
+            if (idx >= 0) {
+                appState.queues[idx] = {
+                    ...appState.queues[idx],
+                    name: name,
+                    jobType: jobType,
+                    service: note ? `${jobType} (${note})` : jobType,
+                    channel: channel,
+                    note: note,
+                    status: status
+                };
+            }
+
+            closeEditQueueModal();
+            renderAdminQueueList();
+            renderQueues();
+            alert("บันทึกการแก้ไขคิวงานเรียบร้อยแล้วค่ะ!");
         }
 
         function updateAdminQueueStatus(queueId, newStatus) {
@@ -1111,6 +1057,7 @@
         function deleteAdminQueue(queueId) {
             if (!confirm("ต้องการลบคิวงานนี้ใช่ไหมคะ?")) return;
             appState.queues = appState.queues.filter(q => q.id !== queueId);
+            if (editingQueueId === queueId) closeEditQueueModal();
             renderAdminQueueList();
             renderQueues();
         }
@@ -1118,32 +1065,50 @@
         function renderAdminQueueList() {
             const listEl = document.getElementById('admin-queue-list');
             const countEl = document.getElementById('adm-queue-total-count');
+            const searchInput = document.getElementById('adm-queue-search-input');
             if (!listEl) return;
 
             if (countEl) countEl.innerText = appState.queues.length;
 
-            if (appState.queues.length === 0) {
-                listEl.innerHTML = `<div class="text-center text-[#c0aab1] py-4">ยังไม่มีรายการคิวงาน</div>`;
+            const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+            const filtered = appState.queues.filter(q => {
+                if (!query) return true;
+                const qSeq = `q${q.seq || ''}`.toLowerCase();
+                return (
+                    (q.name && q.name.toLowerCase().includes(query)) ||
+                    (q.service && q.service.toLowerCase().includes(query)) ||
+                    (q.channel && q.channel.toLowerCase().includes(query)) ||
+                    (q.note && q.note.toLowerCase().includes(query)) ||
+                    qSeq.includes(query)
+                );
+            });
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = `<div class="text-center text-[#c0aab1] py-4">${query ? 'ไม่พบคิวงานที่ค้นหา' : 'ยังไม่มีรายการคิวงาน'}</div>`;
                 return;
             }
 
-            listEl.innerHTML = appState.queues.map(q => `
+            listEl.innerHTML = filtered.map(q => `
                 <div class="bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl p-3.5 space-y-2">
                     <div class="flex items-start justify-between gap-2">
-                        <div>
+                        <div class="min-w-0">
                             <div class="flex items-center space-x-2">
                                 <span class="px-2 py-0.5 rounded-full bg-white border border-[#e3cdd1] text-[10px] font-extrabold text-[#a7898d]">Q${q.seq || ''}</span>
-                                <span class="font-bold text-xs text-[#7d6267]">${q.name}</span>
-                                ${q.rush ? `<span class="px-2 py-0.5 rounded-full bg-[#fceef1] text-[#a7898d] text-[10px] font-bold">🔥 คิวด่วน</span>` : ''}
+                                <span class="font-bold text-xs text-[#7d6267] truncate">${q.name}</span>
                             </div>
                             <div class="text-xs font-semibold text-[#8c6b70] mt-1">${q.service}</div>
                             <div class="text-[10px] text-[#b5979c] mt-0.5">
-                                ช่องทาง: ${q.channel || 'LINE'} · เริ่ม: ${q.startDate || '-'} · ส่ง: ${q.deadline || '-'}
+                                ช่องทาง: ${q.channel || 'LINE'}
                             </div>
                         </div>
-                        <button type="button" onclick="deleteAdminQueue(${q.id})" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#c87d8a] hover:bg-[#fceef1] flex items-center justify-center shrink-0 transition" title="ลบคิว">
-                            <i class="fa-solid fa-trash text-[10px]"></i>
-                        </button>
+                        <div class="flex items-center space-x-1.5 shrink-0">
+                            <button type="button" onclick="openEditQueueModal(${q.id})" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#a7898d] hover:bg-[#fceef1] flex items-center justify-center transition" title="แก้ไขคิว">
+                                <i class="fa-solid fa-pen text-[10px]"></i>
+                            </button>
+                            <button type="button" onclick="deleteAdminQueue(${q.id})" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#c87d8a] hover:bg-[#fceef1] flex items-center justify-center transition" title="ลบคิว">
+                                <i class="fa-solid fa-trash text-[10px]"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="flex items-center space-x-1.5 pt-1">
@@ -1419,13 +1384,15 @@
             const badgeEl = document.getElementById('stamp-card-owner-badge');
             if (!gridEl) return;
 
-            const normalized = (nameQuery || "mimi").trim();
-            const found = appState.stampCards.find(c => c.name.toLowerCase() === normalized.toLowerCase());
+            const normalized = (nameQuery || "").trim();
+            const found = normalized
+                ? appState.stampCards.find(c => c.name.toLowerCase() === normalized.toLowerCase())
+                : null;
             const stampCount = found ? Math.min(10, Math.max(0, parseInt(found.stamps) || 0)) : 0;
 
-            if (labelEl) labelEl.innerText = `${stampCount} of 10 stamps`;
+            if (labelEl) labelEl.innerText = `${stampCount} / 10 stamps`;
             if (badgeEl) {
-                badgeEl.innerText = found ? `บัตรของ: ${found.name}` : `ไม่พบบัตร (${normalized})`;
+                badgeEl.innerText = found ? `บัตรของ: ${found.name}` : `-`;
             }
 
             let html = "";
@@ -1463,9 +1430,10 @@
 
             const query = inputEl.value.trim();
             if (!query) {
-                activeStampName = "mimi";
-                renderStampCard("mimi");
-                if (statusEl) statusEl.innerText = "แสดงบัตรตัวอย่างของ mimi";
+                const fallbackName = appState.stampCards[0] ? appState.stampCards[0].name : "";
+                activeStampName = fallbackName;
+                renderStampCard(activeStampName);
+                if (statusEl) statusEl.innerText = "";
                 return;
             }
 
@@ -1477,15 +1445,9 @@
                 if (found) {
                     statusEl.innerText = `พบบัตรของ "${found.name}" มีสะสมแล้ว ${found.stamps} / 10 ดวง`;
                 } else {
-                    statusEl.innerText = `ไม่พบชื่อ "${query}" ในระบบสะสมแต้ม (แสดง 0 of 10 stamps)`;
+                    statusEl.innerText = `ไม่พบชื่อ "${query}" ในระบบสะสมแต้ม (แสดง 0 / 10 stamps)`;
                 }
             }
-        }
-
-        function fillDemoStampName(demoName) {
-            const inputEl = document.getElementById('stamp-search-input');
-            if (inputEl) inputEl.value = demoName;
-            searchStampCard();
         }
 
         function handleAdminStampImageUpload(input) {
@@ -1529,19 +1491,43 @@
             alert(`บันทึกแต้มของ "${name}" เป็น ${count} ดวงเรียบร้อยแล้วค่ะ`);
         }
 
+        function deleteCustomerStamp(index) {
+            const target = appState.stampCards[index];
+            if (!target) return;
+            if (!confirm(`ต้องการลบรายชื่อ "${target.name}" ออกจากบัตรสะสมแต้มใช่ไหมคะ?`)) return;
+
+            const deletedName = target.name;
+            appState.stampCards.splice(index, 1);
+
+            if (activeStampName.toLowerCase() === deletedName.toLowerCase()) {
+                activeStampName = appState.stampCards[0] ? appState.stampCards[0].name : "";
+            }
+
+            renderStampCard(activeStampName);
+            renderAdminStampList();
+        }
+
         function renderAdminStampList() {
             const listEl = document.getElementById('admin-stamp-customers-list');
             if (!listEl) return;
 
+            if (appState.stampCards.length === 0) {
+                listEl.innerHTML = `<div class="bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl px-3.5 py-4 text-center text-[#c0aab1]">ยังไม่มีรายชื่อบัตรสะสมแต้ม</div>`;
+                return;
+            }
+
             listEl.innerHTML = appState.stampCards.map((c, idx) => `
                 <div class="flex items-center justify-between bg-[#fdfafb] border border-[#f2e4e6] rounded-2xl px-3.5 py-2.5">
-                    <div>
+                    <div class="min-w-0">
                         <span class="font-bold text-gray-800">${c.name}</span>
                         <span class="text-[#a7898d] font-bold ml-2">${c.stamps} / 10 stamps</span>
                     </div>
-                    <div class="flex items-center space-x-1.5">
-                        <button onclick="adjustCustomerStamp(${idx}, -1)" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#a7898d] font-bold hover:bg-[#fceef1]">-</button>
-                        <button onclick="adjustCustomerStamp(${idx}, 1)" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#a7898d] font-bold hover:bg-[#fceef1]">+</button>
+                    <div class="flex items-center space-x-1.5 shrink-0">
+                        <button type="button" onclick="adjustCustomerStamp(${idx}, -1)" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#a7898d] font-bold hover:bg-[#fceef1]" title="ลดแต้ม">-</button>
+                        <button type="button" onclick="adjustCustomerStamp(${idx}, 1)" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#a7898d] font-bold hover:bg-[#fceef1]" title="เพิ่มแต้ม">+</button>
+                        <button type="button" onclick="deleteCustomerStamp(${idx})" class="w-7 h-7 rounded-full bg-white border border-[#f2e4e6] text-[#c87d8a] hover:bg-[#fceef1] flex items-center justify-center transition" title="ลบรายชื่อ">
+                            <i class="fa-solid fa-trash text-[10px]"></i>
+                        </button>
                     </div>
                 </div>
             `).join('');
@@ -1731,11 +1717,10 @@
         }
 
         function initApp() {
-            document.getElementById('shop-title-header').innerText = appState.shopName;
+            updateRealtimeClock();
             const screenTitle = document.getElementById('tama-screen-title');
             if(screenTitle) screenTitle.innerText = `${appState.shopName} ♡`;
             renderCategoriesTabs();
-            updateCartBadge();
             renderReviews();
             renderStampCard(activeStampName);
             renderAdminStampList();
@@ -1753,9 +1738,12 @@
             signQty = 1;
             uploadedBlockImages = [];
             document.getElementById('sign-qty-display').innerText = signQty;
-            document.getElementById('sign-total-price').innerText = signQty * pricePerSign;
             document.getElementById('uploaded-block-count').innerText = "กดเพิ่มรูป (0)";
             document.getElementById('block-images-preview').classList.add('hidden');
+            document.getElementById('sign-customer-name').value = "";
+            document.getElementById('sign-customer-line').value = "";
+            document.getElementById('sign-details').value = "";
+            document.getElementById('sign-extra').value = "";
             document.getElementById('sign-booking-modal').classList.remove('hidden');
         }
         function closeSignBookingDetails() { document.getElementById('sign-booking-modal').classList.add('hidden'); }
@@ -1764,7 +1752,6 @@
             signQty += amount;
             if(signQty < 1) signQty = 1;
             document.getElementById('sign-qty-display').innerText = signQty;
-            document.getElementById('sign-total-price').innerText = signQty * pricePerSign;
         }
 
         function handleBlockImagesUpload(input) {
@@ -1776,7 +1763,7 @@
                 
                 const previewContainer = document.getElementById('block-images-preview');
                 previewContainer.classList.remove('hidden');
-                previewContainer.innerHTML = uploadedBlockImages.map((src, idx) => `
+                previewContainer.innerHTML = uploadedBlockImages.map((src) => `
                     <div class="w-16 h-16 rounded-[14px] overflow-hidden shrink-0 border border-[#f0e6e7] relative shadow-2xs">
                         <img src="${src}" class="w-full h-full object-cover">
                     </div>
@@ -1784,59 +1771,84 @@
             }
         }
 
-        function proceedToPayment() {
-            currentBookingService = 'ทำป้าย';
-            const total = signQty * pricePerSign;
-            document.getElementById('pay-total-display').innerText = `${total} บาท`;
-            document.getElementById('qr-code-img').src = globalQRCodeUrl;
-            closeSignBookingDetails();
-            document.getElementById('payment-modal').classList.remove('hidden');
-        }
+        function submitSignBooking() {
+            const name = document.getElementById('sign-customer-name').value.trim();
+            const channel = document.getElementById('sign-customer-line').value.trim() || "LINE";
+            const signType = document.getElementById('sign-type').value;
+            const signStyle = document.getElementById('sign-style').value;
+            const details = document.getElementById('sign-details').value.trim();
 
-        function closePaymentModal() { document.getElementById('payment-modal').classList.add('hidden'); }
-
-        function submitBookingAndFinish() {
-            const name = document.getElementById('pay-name').value.trim();
-            const email = document.getElementById('pay-email').value.trim();
-            const line = document.getElementById('pay-line').value.trim();
-            const slipInput = document.getElementById('slip-file-input');
-
-            if (!name || !email || !line) {
-                alert("กรุณากรอก ชื่อ, email และ id / link line ให้ครบถ้วนค่ะ");
+            if (!name) {
+                alert("กรุณากรอกชื่อที่ใช้จองก่อนค่ะ");
                 return;
             }
 
-            if (slipInput.files.length === 0) {
-                alert("กรุณาแนบสลิปโอนเงินก่อนกดยืนยันค่ะ");
-                return;
-            }
-
-            const newSeq = appState.queues.length + 1;
+            const newSeq = appState.queues.length > 0
+                ? Math.max(...appState.queues.map(q => q.seq || 0)) + 1
+                : 1;
+            const jobType = `ทำป้าย (${signType} / ${signStyle})`;
             appState.queues.push({
                 id: Date.now(),
                 name: name,
-                service: `${currentBookingService} (${document.getElementById('sign-style').value})`,
-                channel: "LINE",
-                note: "",
-                startDate: queueDateState.start.label,
-                deadline: queueDateState.deadline.label,
-                rush: false,
+                jobType: jobType,
+                service: details ? `${jobType} - ${details}` : jobType,
+                channel: channel,
+                note: details,
                 date: "11/09/69",
                 status: "ยังไม่ได้เริ่ม",
                 seq: newSeq
             });
 
-            closePaymentModal();
-            alert("ส่งสลิปและจองคิวสำเร็จ! ระบบกำลังพาไปหน้าเช็คคิว");
+            closeSignBookingDetails();
+            renderAdminQueueList();
+            alert("จองคิวสำเร็จ! ระบบกำลังพาไปหน้าเช็คคิว");
             switchTab('queue');
         }
 
-        function selectService(serviceName) {
+        function openQuickBookingModal(serviceName) {
             closeBookingModal();
             currentBookingService = serviceName;
-            document.getElementById('pay-total-display').innerText = `89 บาท`;
-            document.getElementById('qr-code-img').src = globalQRCodeUrl;
-            document.getElementById('payment-modal').classList.remove('hidden');
+            document.getElementById('quick-booking-service-title').innerText = serviceName;
+            document.getElementById('quick-book-name').value = "";
+            document.getElementById('quick-book-channel').value = "";
+            document.getElementById('quick-book-note').value = "";
+            document.getElementById('quick-booking-modal').classList.remove('hidden');
+        }
+
+        function closeQuickBookingModal() {
+            document.getElementById('quick-booking-modal').classList.add('hidden');
+        }
+
+        function submitQuickBooking() {
+            const name = document.getElementById('quick-book-name').value.trim();
+            const channel = document.getElementById('quick-book-channel').value.trim() || "LINE";
+            const note = document.getElementById('quick-book-note').value.trim();
+
+            if (!name) {
+                alert("กรุณากรอกชื่อที่ใช้จองก่อนค่ะ");
+                return;
+            }
+
+            const newSeq = appState.queues.length > 0
+                ? Math.max(...appState.queues.map(q => q.seq || 0)) + 1
+                : 1;
+
+            appState.queues.push({
+                id: Date.now(),
+                name: name,
+                jobType: currentBookingService,
+                service: note ? `${currentBookingService} (${note})` : currentBookingService,
+                channel: channel,
+                note: note,
+                date: "11/09/69",
+                status: "ยังไม่ได้เริ่ม",
+                seq: newSeq
+            });
+
+            closeQuickBookingModal();
+            renderAdminQueueList();
+            alert("จองคิวสำเร็จ! ระบบกำลังพาไปหน้าเช็คคิว");
+            switchTab('queue');
         }
 
         function toggleSocialMenu() { document.getElementById('social-menu-popup').classList.toggle('hidden'); }
@@ -1882,32 +1894,13 @@
                             <span class="font-extrabold text-[#a7898d] text-xs shrink-0">${p.price} ฿</span>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-2 pt-0.5">
-                            <button onclick="alert('${(p.desc || 'ดูรายละเอียดเพิ่มเติม').replace(/'/g, "\\'")}')" class="py-2.5 bg-white text-[#a7898d] border border-[#f0e6e7] rounded-full text-[11px] font-bold shadow-2xs hover:bg-[#fdfafb] transition text-center">Ex</button>
-                            <button onclick="addToCart(${p.id})" class="py-2.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full text-[11px] font-bold shadow-2xs transition text-center">add to cart</button>
+                        <div class="pt-0.5">
+                            <button onclick="alert('${(p.desc || 'ดูรายละเอียดเพิ่มเติม').replace(/'/g, "\\'")}')" class="w-full py-2.5 bg-white text-[#a7898d] border border-[#f0e6e7] rounded-full text-[11px] font-bold shadow-2xs hover:bg-[#fdfafb] transition text-center">Ex</button>
                         </div>
                     </div>
                 `;
             }).join('');
         }
-
-        function addToCart(productId) {
-            const p = appState.products.find(x => x.id === productId);
-            if(p) { appState.cart.push(p); updateCartBadge(); }
-        }
-        function updateCartBadge() { document.getElementById('cart-badge').innerText = appState.cart.length; }
-        function openCartModal() {
-            const container = document.getElementById('cart-items-container');
-            let total = 0;
-            container.innerHTML = appState.cart.map((item, idx) => {
-                total += item.price;
-                return `<div class="flex justify-between items-center bg-[#fdfafb] p-2.5 rounded-2xl border border-[#f7eff0]"><span>${item.name}</span><span class="text-[#a7898d] font-bold">฿${item.price}</span></div>`;
-            }).join('') || '<p class="text-center text-gray-400">ว่างเปล่า</p>';
-            document.getElementById('cart-total-price').innerText = `฿${total.toLocaleString()}`;
-            document.getElementById('cart-modal').classList.remove('hidden');
-        }
-        function closeCartModal() { document.getElementById('cart-modal').classList.add('hidden'); }
-        function checkoutCart() { alert("สั่งซื้อสำเร็จ!"); appState.cart = []; updateCartBadge(); closeCartModal(); }
 
         function setQueueFilter(filter) {
             currentQueueFilter = filter;
@@ -1971,7 +1964,6 @@
                                 <div class="flex items-center space-x-2">
                                     <span class="font-extrabold text-sm ${nameText}">${q.name}</span>
                                     <span class="px-2.5 py-0.5 bg-white border ${circleBorder} rounded-full text-[9px] font-extrabold ${nameText} tracking-wider">${channelTag}</span>
-                                    ${q.rush ? `<span class="px-2 py-0.5 bg-[#fceef1] rounded-full text-[9px] font-bold text-[#a7898d]">🔥 ด่วน</span>` : ''}
                                 </div>
                                 <p class="text-xs font-extrabold ${serviceText}">${q.service}</p>
                             </div>
@@ -2037,23 +2029,20 @@
 
         function saveShopThemeSettings() {
             const newName = document.getElementById('adm-shop-name-input').value.trim();
-            if (newName) appState.shopName = newName;
-            alert("บันทึกการตั้งค่าเรียบร้อยแล้วค่ะ!");
-        }
-
-        function saveAdminQRCode() {
-            const qrFileInput = document.getElementById('admin-qr-file-input');
-            if(qrFileInput.files && qrFileInput.files[0]) {
-                globalQRCodeUrl = URL.createObjectURL(qrFileInput.files[0]);
-                alert("อัปโหลด QR Code สำเร็จ!");
-            } else {
-                alert("กรุณาเลือกรูป QR Code ครับ");
+            if (newName) {
+                appState.shopName = newName;
+                const screenTitle = document.getElementById('tama-screen-title');
+                if (screenTitle && currentTab === 'home') {
+                    screenTitle.innerText = `${appState.shopName} ♡`;
+                }
             }
+            alert("บันทึกการตั้งค่าเรียบร้อยแล้วค่ะ!");
         }
 
         window.onload = function() {
             initApp();
             renderQueues();
+            setInterval(updateRealtimeClock, 1000);
         };
     </script>
 </body>
